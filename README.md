@@ -8,10 +8,11 @@ Installation:
 Quite easy! If you're on Windows, download the .exe file. If you're on Linux, then you can choose between running the .jar file through terminal or use Wine(or something else to simulate Windows) to run the .exe file.
 
 In the next version:
-- Errowkey will be supported =========================> done
-- Thirst will be added ===============================> done
-- New monsters =======================================> to-do
-- New items, spellbooks, weapons, aromor, ... ========> in progress
+- Errowkey will be supported  (done)
+- Thirst will be added  (done)
+- New monsters  (to-do)
+- New items, spellbooks, weapons, aromor, ...  (in progress) 
+ ->(javelins and shurikens reworked to be thrown weapons)
 
 Logs:
 version 0.0.2(7 feb 2021)
