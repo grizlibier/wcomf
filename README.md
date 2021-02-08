@@ -18,6 +18,8 @@ In the next version:
 
 - Bugfixing  (in progress)
 
+ -> add arrow keys to the helpscreen (to-do)
+
 Logs:
 
 version 0.0.2.5(8 feb 2021)
