@@ -2,9 +2,12 @@
 
 Here you'll find the newest versions of my game, Weird Caves of Mediocre Fun.
 
+
 About:
 
 This is my first real project, a roguelike. Please enjoy it!
+
+
 
 Installation:
 
@@ -19,6 +22,8 @@ In the next version:
 - Bugfixing  (in progress)
 
  -> add arrow keys to the helpscreen (to-do)
+
+
 
 Logs:
 
