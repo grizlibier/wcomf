@@ -12,27 +12,37 @@ Quite easy! If you're on Windows, download the .exe file. If you're on Linux, th
 
 In the next version:
 
-- Errowkeys will be supported  (done)
+- New monsters  (to-do)
 
-- Thirst will be added  (done)
-
-- New monsters  (in progress)
-
- ->(added slimes and wandering bones for early stages)
-
-- New items, spellbooks, weapons, aromor, ...  (in progress) 
-
- ->(javelins and shurikens reworked to be thrown weapons)
+- New items(spellbooks, general items, potions, ...)  (to-do)
 
 - Bugfixing  (in progress)
 
- ->(irrelevant key input affecting the world fixed)
-
- ->(a 'T' being described as a goblin, as well as several other monsters being described wrongly, fixed)
-
- ->(leveling will happen at the moment of getting the needed amount of xp, any xp over the needed amount will be carried over)
-
 Logs:
+
+version 0.0.2.5(8 feb 2021)
+// This is more of a patch than a new version, but I hope that the nastiest bugs are gone by now //
+
+- Errowkeys are now supported
+
+- Thirst is added 
+
+- New monsters
+
+ -> added slimes and wandering bones for early stages
+
+- Items reworked
+
+ -> javelins and shurikens are reworked to be thrown weapons
+
+- Bugfixing
+
+ -> irrelevant key input affecting the world fixed
+
+ -> a 'T' being described as a goblin, as well as several other monsters being described wrongly, have gotten their appropriate names
+
+ -> leveling will happen at the moment of getting the needed amount of xp, any xp over the needed amount will be carried over to the next level
+
 
 version 0.0.2(7 feb 2021)
 
