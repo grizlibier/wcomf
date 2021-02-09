@@ -19,7 +19,7 @@ In the next version:
 
 - Deathscreens  (in progress)
 
- -> 3 new deathscreens added
+ -> 4 new deathscreens added
 
 - New monsters  (to-do)
 
