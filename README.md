@@ -15,6 +15,12 @@ Quite easy! If you're on Windows, download the .exe file. If you're on Linux, th
 
 In the next version:
 
+- Partially reworked AI  (done / tweaks possible)
+
+- Deathscreens  (in progress)
+
+ -> 3 new deathscreens added
+
 - New monsters  (to-do)
 
 - New items(spellbooks, general items, potions, ...)  (in progress)
