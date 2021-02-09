@@ -17,7 +17,9 @@ In the next version:
 
 - New monsters  (to-do)
 
-- New items(spellbooks, general items, potions, ...)  (to-do)
+- New items(spellbooks, general items, potions, ...)  (in progress)
+
+ -> added flails and a healing armor
 
 - Bugfixing  (in progress)
 
