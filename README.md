@@ -30,6 +30,8 @@ In the next version:
 - Bugfixing  (in progress)
 
  -> add arrow keys to the helpscreen (to-do)
+ -> healing from high food/water nerfed
+ -> damage from low food/water slightly nerfed
 
 
 
