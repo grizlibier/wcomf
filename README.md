@@ -26,12 +26,15 @@ In the next version:
 - New items(spellbooks, general items, potions, ...)  (in progress)
 
  -> added flails and a healing armor
+ -> now some weapons/armors can/will inflict effects to their owners and/or targets, such as bleeding
 
 - Bugfixing  (in progress)
 
- -> add arrow keys to the helpscreen (to-do)
+ -> arrow keys fully supported
+ -> arrow keys added to the helpscreen
  -> healing from high food/water nerfed
  -> damage from low food/water slightly nerfed
+ -> effects are reworked
 
 
 
