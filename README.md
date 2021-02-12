@@ -25,6 +25,10 @@ In the next version:
 
 - New items(spellbooks, general items, potions, ...)  (in progress)
 
+ -> added new potions
+
+ -> added scrolls
+
  -> added flails and a healing armor
  
  -> now some weapons/armors can/will inflict effects to their owners and/or targets, such as bleeding
