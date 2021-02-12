@@ -15,25 +15,27 @@ Quite easy! If you're on Windows, download the .exe file. If you're on Linux, th
 
 In the next version:
 
-- Partially reworked AI  (done / tweaks possible)
+- Partially reworked AI
 
-- Deathscreens  (in progress)
+ -> The game is less likely to crash because of pathfinding, still searching for a way to completely solve the problem.
+
+- Deathscreens  
 
  -> 4 new deathscreens added
 
 - New monsters  (to-do)
 
-- New items(spellbooks, general items, potions, ...)  (in progress)
+- New items(spellbooks, general items, potions, ...)  (nearly done)
 
  -> added new potions
 
- -> added scrolls
+ -> added scrolls into the game, 5 of them
 
  -> added flails and a healing armor
  
  -> now some weapons/armors can/will inflict effects to their owners and/or targets, such as bleeding
 
-- Bugfixing  (in progress)
+- Bugfixing 
 
  -> arrow keys fully supported
  
