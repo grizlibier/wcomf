@@ -13,7 +13,23 @@ Installation:
 
 Quite easy! If you're on Windows, download the .exe file. If you're on Linux, then you can choose between running the .jar file through terminal or use Wine(or something else to simulate Windows) to run the .exe file.
 
-In the next version:
+
+What's in the next version?
+
+- Bugfixing
+
+- New monsters
+
+- New and better equipement
+
+- Notes and lore
+
+- Simple crafting
+
+
+Logs:
+
+version 0.0.3(13 feb 2021)
 
 - Partially reworked AI
 
@@ -21,11 +37,13 @@ In the next version:
 
 - Deathscreens  
 
- -> 4 new deathscreens added
+ -> 4 new + 1 secret deathscreens added
 
-- New monsters  (to-do)
+- New monsters 
 
-- New items(spellbooks, general items, potions, ...)  (nearly done)
+ -> added a houndmaster
+
+- New items(spellbooks, general items, potions, ...)
 
  -> added new potions
 
@@ -48,8 +66,6 @@ In the next version:
  -> effects are reworked
 
 
-
-Logs:
 
 version 0.0.2.5(8 feb 2021)
 // This is more of a patch than a new version, but I hope that the nastiest bugs are gone by now //
