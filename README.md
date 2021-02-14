@@ -26,6 +26,8 @@ What's in the next version?
 
 - Simple crafting
 
+- A Curse of Time
+
 
 Logs:
 
