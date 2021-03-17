@@ -3,7 +3,7 @@
 Here you'll find the newest versions of my game, Weird Caves of Mediocre Fun.
 
 
-About:
+#*About:
 
 This is my first real project, a roguelike. Please enjoy it!
 
