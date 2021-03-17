@@ -3,18 +3,18 @@
 Here you'll find the newest versions of my game, Weird Caves of Mediocre Fun.
 
 
-# *About:
+# About:
 
 This is my first real project, a roguelike. Please enjoy it!
 
 
 
-Installation:
+# Installation:
 
 Quite easy! If you're on Windows, download the .exe file. If you're on Linux, then you can choose between running the .jar file through terminal or use Wine(or something else to simulate Windows) to run the .exe file.
 
 
-What's in the next version?
+# What's in the next version?
 
 - Bugfixing
 
@@ -29,9 +29,9 @@ What's in the next version?
 - A Curse of Time
 
 
-Logs:
+# Logs:
 
-update (17 mar 2021)
+*update (17 mar 2021)
 
 - Added the code for the game. In case someone, someday, might get interested and for my own as well.
 
@@ -39,7 +39,7 @@ update (17 mar 2021)
 
 
 
-version 0.0.3(13 feb 2021)
+*version 0.0.3(13 feb 2021)
 
 - Partially reworked AI
 
@@ -77,8 +77,8 @@ version 0.0.3(13 feb 2021)
 
 
 
-version 0.0.2.5(8 feb 2021)
-// This is more of a patch than a new version, but I hope that the nastiest bugs are gone by now //
+*version 0.0.2.5(8 feb 2021)
+*// This is more of a patch than a new version, but I hope that the nastiest bugs are gone by now //
 
 - Errowkeys are now supported
 
@@ -101,7 +101,7 @@ version 0.0.2.5(8 feb 2021)
  -> leveling will happen at the moment of getting the needed amount of xp, any xp over the needed amount will be carried over to the next level
 
 
-version 0.0.2(7 feb 2021)
+*version 0.0.2(7 feb 2021)
 
 - minor bug fixing
 
