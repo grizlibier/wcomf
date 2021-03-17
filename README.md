@@ -31,6 +31,14 @@ What's in the next version?
 
 Logs:
 
+update (17 mar 2021)
+
+- Added the code for the game. In case someone, someday, might get interested and for my own as well.
+
+- I have a lot of things irl, so the developement will be quite unsteady and slow until April.
+
+
+
 version 0.0.3(13 feb 2021)
 
 - Partially reworked AI
