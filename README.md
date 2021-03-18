@@ -31,6 +31,10 @@ Quite easy! If you're on Windows, download the .exe file. If you're on Linux, th
 
 # Logs:
 
+update v2 (18 mar 2021)
+
+- Fixed a bug that made the game unplayble.
+
 update (17 mar 2021)
 
 - Added the code for the game. In case someone, someday, might get interested and for my own as well.
