@@ -89,23 +89,23 @@ public class StuffFactory {
 	
 	public Item newBread(int depth){
         Item item = new Item('-', Color.ORANGE, "a loaf of bread");
-        world.addAtEmptyItemLocation(item, depth);
         item.modifyFoodValue(150);
+        world.addAtEmptyItemLocation(item, depth);
         return item;
     }
 	
 	public Item newApple(int depth){
         Item item = new Item('*', AsciiPanel.red, "an apple");
-        world.addAtEmptyItemLocation(item, depth);
         item.modifyFoodValue(50);
+        world.addAtEmptyItemLocation(item, depth);
         return item;
     }
 	
 	public Item newWater(int depth){
         Item item = new Item((char)247, AsciiPanel.blue, "a bottlefull of water");
-        world.addAtEmptyItemLocation(item, depth);
         item.modifyFoodValue(10);
         item.modifyThirstValue(35);
+        world.addAtEmptyItemLocation(item, depth);
         return item;
     }
 	
@@ -285,7 +285,7 @@ public class StuffFactory {
 	}
 	
 	public Creature randomLowerCreature(int depth, Creature player){
-	    switch ((int)(Math.random() * 5)){
+	    switch ((int)(Math.random() * 4)){
 	    case 0: return newBat(depth);
 	    case 1: return newCrazedArcher(depth, player);
 	    case 2: return newSlime(depth, player);
@@ -295,7 +295,7 @@ public class StuffFactory {
 	}
 	
 	public Creature randomMediumCreature(int depth, Creature player){
-	    switch ((int)(Math.random() * 5)){
+	    switch ((int)(Math.random() * 4)){
 	    case 0: return newHoundMaster(depth, player);
 	    case 1: return newGoblin(depth, player);
 	    case 2: return newCrazedSwordsman(depth, player);
@@ -305,7 +305,7 @@ public class StuffFactory {
 	}
 	
 	public Creature randomHigherCreature(int depth, Creature player){
-	    switch ((int)(Math.random() * 5)){
+	    switch ((int)(Math.random() * 4)){
 	    case 0: return newCrazedSwordsman(depth, player);
 	    case 1: return newCrazedArcher(depth, player);
 	    case 2: return newDemon(depth, player);
@@ -359,6 +359,21 @@ public class StuffFactory {
 		return fungus;
 	}
 	
+	public Creature newHoundMaster(int depth, Creature player){
+	    Creature houndmaster = new Creature(world, 'H', AsciiPanel.brightYellow, 40, 10, 5, "houndmaster");
+	    houndmaster.equip(newFlail(depth));
+	    world.addAtEmptyLocation(houndmaster, depth);
+	    new HoundMasterAi(houndmaster, this, player);
+	    return houndmaster;
+	}
+	
+	public Creature newHound(int depth, Creature player){
+	    Creature hound = new Creature(world, 'h', AsciiPanel.yellow, 10, 25, 0, "hound");
+	    world.addAtEmptyLocation(hound, depth);
+	    new HoundAi(hound, player);
+	    return hound;
+	}
+	
 	public Creature newBat(int depth){
 	    Creature bat = new Creature(world, 'b', AsciiPanel.white, 15, 1, 0, "bat");
 	    world.addAtEmptyLocation(bat, depth);
@@ -379,21 +394,6 @@ public class StuffFactory {
 	    world.addAtEmptyLocation(bones, depth);
 	    new BonesAi(bones, player);
 	    return bones;
-	}
-	
-	public Creature newHoundMaster(int depth, Creature player){
-	    Creature hm = new Creature(world, 'H', AsciiPanel.yellow, 40, 10, 5, "houndmaster");
-	    hm.equip(newFlail(depth));
-	    world.addAtEmptyLocation(hm, depth);
-	    new HoundMasterAi(hm, this, player);
-	    return hm;
-	}
-	
-	public Creature newHound(int depth, Creature player){
-	    Creature hound = new Creature(world, 'h', AsciiPanel.yellow, 10, 25, 0, "hound");
-	    world.addAtEmptyLocation(hound, depth);
-	    new HoundAi(hound, player);
-	    return hound;
 	}
 	
 	public Creature newGoblin(int depth, Creature player){

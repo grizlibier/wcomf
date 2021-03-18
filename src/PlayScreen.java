@@ -59,29 +59,23 @@ public class PlayScreen implements screen {
     
     private void createItems(StuffFactory ItemFactory) {
         for (int z = 0; z < world.depth(); z++){
-        	for (int i = 0; i <  world.height() / 10; i++){
-            	ItemFactory.randomFood(z);
-            }
             for (int i = 0; i <  world.height() / 5; i++){
             	ItemFactory.randomItem(z);
-            }
-            for (int i = 0; i <  world.height() * 5; i++){
-            	ItemFactory.newWater(z);
+                ItemFactory.newWater(z);
             }
             for (int i = 0; i <  world.height() / 10; i++){
             	ItemFactory.randomArmor(z);
+                ItemFactory.randomWeapon(z);
             }
-            for (int i = 0; i <  world.height() / 6; i++){
-            	ItemFactory.randomWeapon(z);
+            for (int i = 0; i <  world.height() / 15; i++){
+            	ItemFactory.randomFood(z);
+                ItemFactory.randomScrolls(z);
             }
-            for (int i = 0; i <  world.height() / 2; i++){
-            	ItemFactory.randomPotion(z);
-            }
-            for (int i = 0; i <  world.height() / 4; i++){
+            for (int i = 0; i <  world.height() / 20; i++){
             	ItemFactory.randomBook(z);
             }
-            for (int i = 0; i <  world.height() / 4; i++){
-            	ItemFactory.randomScrolls(z);
+            for (int i = 0; i <  world.height() / 25; i++){
+            	ItemFactory.randomPotion(z);
             }
         }
     }

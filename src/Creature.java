@@ -3,8 +3,6 @@ package ascii_rl;
 import java.awt.Color;
 import java.util.*;
 
-import asciiPanel.AsciiPanel;
-
 public class Creature {
 	public World world;
 	
@@ -185,7 +183,6 @@ public class Creature {
         this.food = 500;
         this.level = 1;
         this.effects = new ArrayList<Effect>();
-        this.regenManaPer1000 = regenManaPer1000;
     }
     
     public void moveBy( int mx, int my, int mz){
