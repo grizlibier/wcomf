@@ -1,20 +1,20 @@
-# wcomf
+# WCOMF
 
 Here you'll find the newest versions of my game, Weird Caves of Mediocre Fun.
 
 
-# About:
+# About
 
 This is my first real project, a roguelike. Please enjoy it!
 
 
 
-# Installation:
+# Installation
 
 Quite easy! All you need to do is to download and execute the `.jar` file, works on any system that has Java 8 environment or higher.
 
 
-# What's in the next version?
+# What's in the next version? What's the progress?
 
 - Bugfixing
 
@@ -33,7 +33,7 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 - Reworked leveling scripts (done)
 
 
-# Logs:
+# Logs
 
 update v2 (18 mar 2021)
 
