@@ -26,7 +26,9 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 - Simple crafting
 
-- A Curse of Time
+- A Curse of Time (done)
+
+- Reworked leveling scripts (done)
 
 
 # Logs:
