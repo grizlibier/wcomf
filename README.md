@@ -11,7 +11,7 @@ This is my first real project, a roguelike. Please enjoy it!
 
 # Installation:
 
-Quite easy! All you need to do is to download and execute the `.jar` file, works on any system that has Java 8 evironment or higher.
+Quite easy! All you need to do is to download and execute the `.jar` file, works on any system that has Java 8 environment or higher.
 
 
 # What's in the next version?
