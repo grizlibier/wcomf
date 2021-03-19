@@ -26,7 +26,11 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 - Notes and lore
 
-- Simple crafting
+- Simple crafting (in process)
+
+-> Roast meat!
+
+-> Make javelins
 
 - A Curse of Time (done)
 
