@@ -18,6 +18,8 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 - Bugfixing
 
+-> reworked deathscreens to work properly
+
 - New monsters
 
 - New and better equipement
