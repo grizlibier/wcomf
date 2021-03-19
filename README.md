@@ -11,7 +11,7 @@ This is my first real project, a roguelike. Please enjoy it!
 
 # Installation:
 
-Quite easy! If you're on Windows, download the .exe file. If you're on Linux, then you can choose between running the .jar file through terminal or use Wine(or something else to simulate Windows) to run the .exe file.
+Quite easy! All you need to do is to download and execute the `.jar` file, works on any system that has Java 8 evironment or higher.
 
 
 # What's in the next version?
