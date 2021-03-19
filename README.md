@@ -30,7 +30,7 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 -> Roast meat!
 
--> Make javelins
+-> Make javelins!
 
 - A Curse of Time (done)
 
