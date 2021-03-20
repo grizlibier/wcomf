@@ -26,8 +26,6 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 - New and better equipement
 
-- Notes and lore
-
 - Simple crafting (in process)
 
 -> Roast meat!
