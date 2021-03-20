@@ -38,6 +38,8 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 - A Curse of Time (done)
 
+-> It's at your heals!
+
 - Reworked leveling scripts (done)
 
 
