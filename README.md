@@ -26,6 +26,8 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 - New and better equipement
 
+-> Both equipement and items have their custom descriptions!
+
 - Simple crafting (in process)
 
 -> Roast meat!
