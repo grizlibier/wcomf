@@ -330,7 +330,7 @@ public class Creature {
 	}
 	
 	private void leaveCorpse(){
-        Item corpse = new Item('%', color, name + " corpse");
+        Item corpse = new Item('%', color, name + " corpse", "A corpse of a slain monster. Is still eatable.");
         corpse.modifyFoodValue(maxHp * 2);
         world.addAtEmptySpace(corpse, x, y, z);
         for (Item item : inventory.getItems()){
@@ -340,7 +340,7 @@ public class Creature {
     }
 	
 	public Item newUnknownFlesh(int depth){
-        Item item = new Item('/', color, "a patch of unknown flesh");
+        Item item = new Item('/', color, "a patch of unknown flesh", "A patch of weird-smelling meat.");
         item.modifyFoodValue(250);
         item.setQuaffEffect(new Effect(5){
 	        public void start(Creature creature){
@@ -440,33 +440,27 @@ public class Creature {
 	public void gainMaxHp(int amount) {
 	    maxHp += amount;
 	    hp += amount;
-	    doAction("feel healthier than before");
 	  }
 
 	  public void gainAttackValue(int amount) {
 	    attackValue += amount;
-	    notify("You can hit your foes harder.");
 	  }
 
 	  public void gainDefenseValue(int amount) {
 	    defenseValue += amount;
-	    doAction("grow accustomed to taking hits");
 	  }
 
 	  public void gainVision(int amount) {
 	    visionRadius += amount;
-	    doAction("realize that you can see better in the darkness");
 	  }
 	  
 	  public void gainMaxMana(int amount) {
 	        maxMana += amount;
 	        mana += amount;
-	        doAction("optimize the flow of magic in your body");
 	    }
 
 	    public void gainRegenMana(int amount){
 	        regenManaPer1000 += amount;
-	        doAction("find a way to syphon more mana from the environment");
 	    }
 	  
 	  public String details() {

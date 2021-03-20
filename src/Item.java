@@ -13,6 +13,9 @@ public class Item {
 
     private String name;
     public String name() { return name; }
+
+    private String description;
+    public String description() { return description; }
     
     private int foodValue;
     public int foodValue() { return foodValue; }
@@ -77,10 +80,11 @@ public class Item {
         writtenSpells.add(new Spell(name, manaCost, effect));
     }
 
-    public Item(char glyph, Color color, String name){
+    public Item(char glyph, Color color, String name, String description){
         this.glyph = glyph;
         this.color = color;
         this.name = name;
+        this.description = description;
         writtenSpells = new ArrayList<Spell>();
     }
     

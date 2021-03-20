@@ -16,8 +16,7 @@ public class FungusAi extends CreatureAi {
 	    	if (spreadcount < 2 && Math.random() < 0.10)
 				spread();
 	    	hunt(player);
-	    } else
-	    	spread();
+	    }
 	}
 	
 	private void spread(){

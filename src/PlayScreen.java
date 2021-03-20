@@ -132,6 +132,9 @@ public class PlayScreen implements screen {
         messages.clear();
     }
     
+
+    // KEYMAPPINGS
+
     @Override
     public screen respondToUserInput(KeyEvent key) {
     	int level = player.level();
@@ -191,23 +194,27 @@ public class PlayScreen implements screen {
         if (player.level() > level)
             subscreen = new LevelUpScreen(player, player.level() - level);
         
+        if (turn % 150 == 0){
+            player.notify("You feel as if darkness surrounds you for a second.");
+            CurseOfTimeController curse = new CurseOfTimeController();
+            curse.autoCurse(player);
+        }
        
         
         // LOSESCREENS
         
         if (player.hp() < 1) {
-        	if (player.effects != null) {
-        		return new LoseScreenPoison();
-        	} else if (player.food() < 1) {
+        	if (player.food() < 1) {
         		return new LoseScreenHunger();
         	} else if (player.thirst() < 1) {
         		return new LoseScreenThirst();
-        	} else if (player.maxFood() > 1000 && player.food() == player.maxFood()) {
+        	} else if (player.maxFood() > 1000 && player.food() > 0) {
         		return new LoseScreenOvereating();
+        	} else if (!player.effects.isEmpty()) {
+        		return new LoseScreenPoison();
         	} else {
         		return new LoseScreen();
         	}
-        	
         }
         
         return this;
