@@ -16,11 +16,13 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 # What's in the next version? What's the progress?
 
-- Bugfixing
+- Bugfixing (in process)
 
 -> reworked deathscreens to work properly
 
-- New monsters
+- New monsters (in process)
+
+-> Rats, kobolts and nightmarish horrors!
 
 - New and better equipement
 
@@ -29,6 +31,8 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 - Simple crafting (in process)
 
 -> Roast meat!
+
+-> Cook soup!
 
 -> Make javelins!
 
