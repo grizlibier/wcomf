@@ -20,6 +20,8 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 -> reworked deathscreens to work properly
 
+-> reworked the way food and water works
+
 - New monsters (in process)
 
 -> Rats, kobolts and nightmarish horrors!
