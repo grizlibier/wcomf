@@ -16,6 +16,10 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 # What's in the next version? What's the progress?
 
+- General changes
+
+-> made the start harder by lowering stats you start with
+
 - Bugfixing (in process)
 
 -> reworked deathscreens to work properly
