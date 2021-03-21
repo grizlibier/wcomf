@@ -36,6 +36,10 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 -> Both equipement and items have their custom descriptions!
 
+-> Added new a spellbook!
+
+-> Added some new armors!
+
 - Simple crafting (in process)
 
 -> Roast meat!
