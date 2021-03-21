@@ -15,7 +15,7 @@ public class ExamineScreen extends InventoryBasedScreen {
     }
 
     protected screen use(Item item) {
-        player.notify("It's " + item.name() + "." + item.details());
+        player.notify(item.details());
         player.notify(item.description());
         return null;
     }

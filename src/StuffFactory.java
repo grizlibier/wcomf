@@ -50,7 +50,7 @@ public class StuffFactory {
 	            if (creature.hp() == creature.maxHp())
 	                return;
 	                                
-	            creature.modifyHp(20);
+	            creature.modifyHp(15);
 	            creature.doAction("see some small wounds disappearing");
 	        }
 	    };
@@ -113,6 +113,7 @@ public class StuffFactory {
 	public Item newBread(int depth){
         Item item = new Item('-', Color.ORANGE, "a loaf of bread", "A loaf of old, hard bread.");
         item.modifyFoodValue(150);
+		item.isFood = true;
         world.addAtEmptyItemLocation(item, depth);
         return item;
     }
@@ -120,6 +121,7 @@ public class StuffFactory {
 	public Item newApple(int depth){
         Item item = new Item('*', AsciiPanel.red, "an apple", "A surprisingly fresh apple!");
         item.modifyFoodValue(50);
+		item.isFood = true;
         world.addAtEmptyItemLocation(item, depth);
         return item;
     }
@@ -128,6 +130,7 @@ public class StuffFactory {
         Item item = new Item((char)247, AsciiPanel.blue, "a bottle of water", "Who left a bottle of water here?");
         item.modifyFoodValue(10);
         item.modifyThirstValue(35);
+		item.isDrink = true;
         world.addAtEmptyItemLocation(item, depth);
         return item;
     }
@@ -136,6 +139,7 @@ public class StuffFactory {
         Item item = new Item('/', AsciiPanel.yellow, "a patch of unknown flesh", "A patch of weird-smelling meat.");
         item.modifyFoodValue(200);
         item.setFoodEffect(Poisoned(3));
+		item.isFood = true;
         world.addAtEmptyItemLocation(item, depth);
         return item;
     }
@@ -143,6 +147,7 @@ public class StuffFactory {
 	public Item newCookedMeat(int depth){
 		Item item = new Item('/', AsciiPanel.brightYellow, "a portion of cooked meat", "A piece of cooked meat, it smels so good!");
 		item.modifyFoodValue(350);
+		item.isFood = true;
 		world.addAtEmptyItemLocation(item, depth);
 		return item;
 	}
@@ -150,6 +155,8 @@ public class StuffFactory {
 	public Item newSoup(int depth){
 		Item item = new Item('^', AsciiPanel.yellow, "a bowl of soup", "A bowl of soup, not great but better than nothing.");
 		item.modifyFoodValue(270);
+		item.modifyThirstValue(50);
+		item.isFood = true;
 		world.addAtEmptyItemLocation(item, depth);
 		return item;
 	}
@@ -157,6 +164,8 @@ public class StuffFactory {
 	public Item newSpoiledSoup(int depth){
 		Item item = new Item('^', AsciiPanel.yellow, "a bowl of spoiled soup", "A bowl of spoiled soup, still edible if you remove the fungi...");
 		item.modifyFoodValue(150);
+		item.modifyThirstValue(40);
+		item.isFood = true;
 		if (Math.random() > 0.5){
 			item.setFoodEffect(Poisoned(5));
 		}
@@ -209,7 +218,7 @@ public class StuffFactory {
 	}
 	
 	public Item newFlail(int depth){
-		Item item = new Item(')', AsciiPanel.yellow, "a flail", "Can be either a weapon or a satisfaction of weard interests.");
+		Item item = new Item(')', AsciiPanel.yellow, "a flail", "Can be either a weapon or a satisfaction of weird interests.");
 		item.modifyAttackValue(2);
 		item.setWeaponEffect(Bleeding(2));
 		world.addAtEmptyItemLocation(item, depth);
@@ -263,6 +272,20 @@ public class StuffFactory {
 	    world.addAtEmptyItemLocation(item, depth);
 	    return item;
 	}
+
+	public Item newDustyArmor(int depth){
+		Item item = new Item('[', AsciiPanel.white, "a dusty armor", "Some armorplates are missing.");
+		item.modifyDefenseValue(3);
+		world.addAtEmptyItemLocation(item, depth);
+	    return item;
+	}
+
+	public Item newWoolArmor(int depth){
+		Item item = new Item('[', AsciiPanel.yellow, "a woolen cap", "Keeps you warm, but gets in the way when fighting.");
+		item.modifyDefenseValue(1);
+		world.addAtEmptyItemLocation(item, depth);
+	    return item;
+	}
 	
 	public Item newArmorOfHealing(int depth, Creature creature){
 	    Item item = new Item('[', AsciiPanel.red, "an armor of healing", "You feel that this armor is different.");
@@ -289,7 +312,7 @@ public class StuffFactory {
 	}
 
 	public Creature newRat(int depth, Creature player){
-		Creature rat = new Creature(world, 'r', AsciiPanel.black, 10, 10, 0, "rat");
+		Creature rat = new Creature(world, 'r', AsciiPanel.yellow, 10, 10, 0, "rat");
 		world.addAtEmptyLocation(rat, depth);
 		new AiCommon(rat, player);
 		return rat;
@@ -317,7 +340,7 @@ public class StuffFactory {
 	}
 	
 	public Creature newBones(int depth, Creature player){
-	    Creature bones = new Creature(world, 'B', AsciiPanel.green, 30, 15, 0, "wandering bones");
+	    Creature bones = new Creature(world, 'B', AsciiPanel.white, 30, 15, 0, "wandering bones");
 	    bones.equip(randomArmor(depth));
 		if (Math.random() > 0.5)
 			bones.equip(newGreatSword(depth));
@@ -407,8 +430,8 @@ public class StuffFactory {
 	public Item newPotionOfHealth(int depth){
 	    Item item = new Item('!', AsciiPanel.white, "a health potion", "A potion that can heal an injured body, but not a broken heart.");
 	    item.modifyThirstValue(5);
+		item.isDrink = true;
 	    item.setQuaffEffect(InstantMinorHeal());
-	                
 	    world.addAtEmptyItemLocation(item, depth);
 	    return item;
 	}
@@ -416,6 +439,7 @@ public class StuffFactory {
 	public Item newPotionOfPoison(int depth){
 	    Item item = new Item('!', AsciiPanel.green, "a potion of poison", "These were often served to kings.");
 	    item.modifyThirstValue(5);
+		item.isDrink = true;
 	    item.setQuaffEffect(Poisoned(10));
 	                
 	    world.addAtEmptyItemLocation(item, depth);
@@ -425,6 +449,7 @@ public class StuffFactory {
 	public Item newPotionOfWarrior(int depth){
 	    Item item = new Item('!', AsciiPanel.white, "a warrior's potion", "Makes you a bit stronger, don't overuse it.");
 	    item.modifyThirstValue(5);
+		item.isDrink = true;
 	    item.setQuaffEffect(new Effect(20){
 	        public void start(Creature creature){
 	            creature.modifyAttackValue(5);
@@ -451,8 +476,8 @@ public class StuffFactory {
 	public Item newPotionOfMana(int depth){
 	    Item item = new Item('!', AsciiPanel.blue, "a mana potion", "A potion of liquid mana.");
 	    item.modifyThirstValue(5);
+		item.isDrink = true;
 	    item.setQuaffEffect(MinorMana());
-	                
 	    world.addAtEmptyItemLocation(item, depth);
 	    return item;
 	}
@@ -460,6 +485,7 @@ public class StuffFactory {
 	public Item newPotionOfVision(int depth){
 	    Item item = new Item('!', AsciiPanel.brightBlack, "a potion of vision", "See better in the darkness.");
 	    item.modifyThirstValue(5);
+		item.isDrink = true;
 	    item.setQuaffEffect(new Effect(10){
 	        public void start(Creature creature){
 	            creature.modifyVision(2);
@@ -478,6 +504,7 @@ public class StuffFactory {
 	public Item newPotionOfBlindness(int depth){
 	    Item item = new Item('!', AsciiPanel.brightBlack, "a potion of blindness", "Blind your enemies and escape!");
 	    item.modifyThirstValue(5);
+		item.isDrink = true;
 	    item.setQuaffEffect(new Effect(5){
 	        public void start(Creature creature){
 	            creature.modifyVision(-2);
@@ -649,7 +676,7 @@ public class StuffFactory {
 	}
 	
 	public Item newWhiteMagesSpellbook(int depth) {
-        Item item = new Item('+', AsciiPanel.brightWhite, "a white mage's spellbook", "A book with spells, left by its previous owner.");
+        Item item = new Item('+', AsciiPanel.brightWhite, "a white mage's spellbook", "A book with spells, left by a warmage.");
         item.addWrittenSpell("minor heal", 4, new Effect(1){
             public void start(Creature creature){
                 if (creature.hp() == creature.maxHp())
@@ -705,7 +732,7 @@ public class StuffFactory {
     }
 	
 	public Item newBlueMagesSpellbook(int depth) {
-        Item item = new Item('+', AsciiPanel.brightBlue, "a blue mage's spellbook", "A book with spells, left by its previous owner.");
+        Item item = new Item('+', AsciiPanel.brightBlue, "a blue mage's spellbook", "A book with spells, left by a scouting mage.");
 
         item.addWrittenSpell("blood to mana", 1, new Effect(1){
             public void start(Creature creature){
@@ -736,7 +763,7 @@ public class StuffFactory {
             }
         });
         
-        item.addWrittenSpell("detect creatures", 16, new Effect(75){
+        item.addWrittenSpell("detect creatures", 16, new Effect(25){
             public void start(Creature creature){
                 creature.doAction("look far off into the distance");
                 creature.modifyDetectCreatures(1);
@@ -750,7 +777,7 @@ public class StuffFactory {
     }
 	
 	public Item newRedMagesSpellbook(int depth) {
-        Item item = new Item('+', AsciiPanel.red, "a red mage's spellbook", "A book with spells, left by its previous owner.");
+        Item item = new Item('+', AsciiPanel.red, "a red mage's spellbook", "A book with spells, left by a blood mage.");
         
         item.addWrittenSpell("leech lifeforce", 1, new Effect(1){
             public void start(Creature creature, Creature other){
@@ -798,6 +825,44 @@ public class StuffFactory {
         world.addAtEmptyItemLocation(item, depth);
         return item;
     }
+
+	public Item newOccultSpellbook(int depth) {
+        Item item = new Item('+', AsciiPanel.red, "an occult spellbook", "A book with spells, left by an occultist.");
+        
+        item.addWrittenSpell("leech lifeforce", 1, new Effect(1){
+            public void start(Creature creature, Creature other){
+                int amount = Math.min(creature.hp() - 15, creature.maxMana() - creature.mana());
+                other.modifyHp(-amount);
+                creature.modifyHp(amount);
+            }
+        });
+        
+        item.addWrittenSpell("eldrich tentacle", 5, new Effect(1){
+            public void start(Creature creature, Creature other){
+                int amount = creature.hp() / 3;
+                other.modifyHp(-amount * 2);
+                creature.modifyHp(-amount / 2);
+            }
+        });
+        
+		item.addWrittenSpell("the abyss", 10, new Effect(5){
+			public void start(Creature self){
+				self.modifyDefenseValue(10);
+				self.modifyAttackValue(15);
+				self.notify("You looked into the Abyss and It granted you power.");
+			}
+
+			public void end(Creature self){
+				self.modifyDefenseValue(-10);
+				self.modifyAttackValue(-15);
+				self.modifyHp(-10);
+				self.notify("The Abyss takes some of your blood as payment for power.");
+			}
+		});
+
+        world.addAtEmptyItemLocation(item, depth);
+        return item;
+    }
 		
 	// RANDOMISERS
 	
@@ -833,10 +898,12 @@ public class StuffFactory {
 	}
 
 	public Item randomArmor(int depth){
-	    switch ((int)(Math.random() * 3)){
+	    switch ((int)(Math.random() * 5)){
 			case 0: return newLightArmor(depth);
 			case 1: return newMediumArmor(depth);
-			default: return newHeavyArmor(depth);
+			case 2: return newHeavyArmor(depth);
+			case 3: return newWoolArmor(depth);
+			default: return newDustyArmor(depth);
 	    }
 	}
 	
@@ -885,9 +952,10 @@ public class StuffFactory {
 	}
 	
 	public Item randomBook(int depth){
-        switch ((int)(Math.random() * 3)){
+        switch ((int)(Math.random() * 4)){
 			case 0: return newBlueMagesSpellbook(depth);
 			case 1: return newRedMagesSpellbook(depth);
+			case 2: return newOccultSpellbook(depth);
 			default: return newWhiteMagesSpellbook(depth);
         }
 	}

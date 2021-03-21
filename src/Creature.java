@@ -120,10 +120,10 @@ public class Creature {
     }
 
     public void eat(Item item){
-    	if (item.thirstValue() != 0) {
+    	if (item.isDrink) {
     		doAction("drink " + item.name());
     		consume(item);
-    	} else if (item.foodValue() != 0) {
+    	} else if (item.isFood) {
     		doAction("eat " + item.name());
         	consume(item);
     	} else if (item.isAScroll()) {
@@ -330,8 +330,9 @@ public class Creature {
 	}
 	
 	private void leaveCorpse(){
-        Item corpse = new Item('%', color, name + " corpse", "A corpse of a slain monster. Is still eatable.");
+        Item corpse = new Item('%', color, name + "a corpse", "A corpse of a slain monster. Is still eatable.");
         corpse.modifyFoodValue(maxHp * 2);
+		corpse.isFood = true;
         world.addAtEmptySpace(corpse, x, y, z);
         for (Item item : inventory.getItems()){
             if (item != null)
@@ -342,6 +343,7 @@ public class Creature {
 	public Item newUnknownFlesh(int depth){
         Item item = new Item('/', color, "a patch of unknown flesh", "A patch of weird-smelling meat.");
         item.modifyFoodValue(250);
+		item.isFood = true;
         item.setQuaffEffect(new Effect(5){
 	        public void start(Creature creature){
 	            creature.doAction("look very sick");

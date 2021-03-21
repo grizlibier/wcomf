@@ -11,7 +11,7 @@ public class QuaffScreen extends InventoryBasedScreen {
     }
 
     protected boolean isAcceptable(Item item) {
-            return item.thirstValue() != 0 || item.quaffEffect() != null && item.thirstValue() != 0;
+            return item.isDrink;
     }
 
     protected screen use(Item item) {

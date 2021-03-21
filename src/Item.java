@@ -20,10 +20,12 @@ public class Item {
     private int foodValue;
     public int foodValue() { return foodValue; }
     public void modifyFoodValue(int amount) { foodValue += amount; }
+    public boolean isFood;
     
     private int thirstValue;
     public int thirstValue() { return thirstValue; }
     public void modifyThirstValue(int amount) { thirstValue += amount; }
+    public boolean isDrink;
     
     private int attackValue;
     public int attackValue() { return attackValue; }
@@ -92,25 +94,25 @@ public class Item {
         String details = "";
 
         if (attackValue != 0)
-            details += "	attack:" + attackValue;
+            details += "| attack:" + attackValue + " |";
 
         if (defenseValue != 0)
-            details += "	defense:" + defenseValue;
+            details += "| defense:" + defenseValue + " |";
 
         if (foodValue != 0)
-            details += "	filling:" + foodValue;
+            details += "| filling:" + foodValue + " |";
         
         if (thirstValue != 0)
-        	details += "	hydration:" + thirstValue;
+        	details += "| hydration:" + thirstValue + " |";
         
         if (visionRadius != 0)
-        	details += "	extra vision:" + visionRadius;
+        	details += "| extra vision:" + visionRadius + " |";
         
         if (thrownAttackValue != 0)
-        	details += "	thrown attack:" + thrownAttackValue;
+        	details += "| thrown attack:" + thrownAttackValue + " |";
         
         if (rangedAttackValue != 0)
-        	details += "	ranged attack:" + rangedAttackValue;
+        	details += "| ranged attack:" + rangedAttackValue + " |";
         
         return details;
     }
