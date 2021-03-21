@@ -20,11 +20,13 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 -> made the start harder by lowering stats you start with
 
+-> reworked the way food and water works
+
+-> reworked leveling scripts
+
 - Bugfixing (in process)
 
 -> reworked deathscreens to work properly
-
--> reworked the way food and water works
 
 - New monsters (in process)
 
@@ -45,8 +47,6 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 - A Curse of Time (done)
 
 -> It's at your heals!
-
-- Reworked leveling scripts (done)
 
 
 # Logs
