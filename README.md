@@ -16,6 +16,21 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 # What's in the next version? What's the progress?
 
+- Lore?
+
+- New monsters?
+
+- New items and crafting recipes
+
+- Probably a rework of the way crafting works + possibility to remember recipes
+
+- Bugfixing (probably)
+
+
+# Logs
+
+version 0.0.4(24 mar 2021)
+
 - General changes
 
 -> made the start harder by lowering stats you start with
@@ -52,8 +67,6 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 -> It's at your heals!
 
-
-# Logs
 
 update v2 (18 mar 2021)
 
