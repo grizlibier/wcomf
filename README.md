@@ -16,8 +16,6 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 # What's in the next version? What's the progress?
 
-- Simple interface?
-
 - Lore?
 
 - New monsters?
