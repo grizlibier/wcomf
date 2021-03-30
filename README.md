@@ -20,13 +20,21 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 - New monsters?
 
+- General changes
+
+-> thrown weapons can now break upon being thrown
+
 - New items and crafting recipes
 
 -> added an exe
 
 - Probably a rework of the way crafting works + possibility to remember recipes
 
-- Bugfixing (probably)
+- Bugfixing
+
+-> fixed the thrown weapons to deal damage properly
+
+-> fixed some chance-based bugs
 
 
 # Logs
