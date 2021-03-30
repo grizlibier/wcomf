@@ -28,6 +28,8 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 -> added an exe
 
+-> adding usable items to cure effects
+
 - Probably a rework of the way crafting works + possibility to remember recipes
 
 - Bugfixing
@@ -35,6 +37,8 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 -> fixed the thrown weapons to deal damage properly
 
 -> fixed some chance-based bugs
+
+-> weapons won't inflict effects on the player unless it's a feature
 
 
 # Logs
