@@ -39,11 +39,11 @@ version 0.0.4(24 mar 2021)
 
 -> reworked leveling scripts
 
-- Bugfixing (in process)
+- Bugfixing
 
 -> reworked deathscreens to work properly
 
-- New monsters (in process)
+- New monsters
 
 -> Rats, kobolts and nightmarish horrors!
 
@@ -55,7 +55,7 @@ version 0.0.4(24 mar 2021)
 
 -> Added some new armors!
 
-- Simple crafting (in process)
+- Simple crafting 
 
 -> Roast meat!
 
@@ -63,7 +63,7 @@ version 0.0.4(24 mar 2021)
 
 -> Make javelins!
 
-- A Curse of Time (done)
+- A Curse of Time
 
 -> It's at your heals!
 
