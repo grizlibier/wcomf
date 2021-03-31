@@ -18,17 +18,23 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 - Lore?
 
+-> is being written
+
 - New monsters?
 
 - General changes
 
 -> thrown weapons can now break upon being thrown
 
+-> updated the helpscreen
+
+-> updated the effects
+
 - New items and crafting recipes
 
--> added an exe
+-> added an exe (weapon)
 
--> adding usable items to cure effects
+-> added usable items to cure effects and a 'use' function
 
 - Probably a rework of the way crafting works + possibility to remember recipes
 
