@@ -28,6 +28,8 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 -> updated the effects
 
+-> some spells won't need you to specify the target anymore
+
 - New items and crafting recipes
 
 -> added an exe (weapon)
