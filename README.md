@@ -20,8 +20,6 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 -> is being written
 
-- New monsters?
-
 - General changes
 
 -> thrown weapons can now break upon being thrown
@@ -36,7 +34,7 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 -> added usable items to cure effects and a 'use' function
 
-- Probably a rework of the way crafting works + possibility to remember recipes
+- Possibility to remember recipes has been added!
 
 - Bugfixing
 
@@ -45,6 +43,8 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 -> fixed some chance-based bugs
 
 -> weapons won't inflict effects on the player unless it's a feature
+
+-> fixed wrong display of examine, cast, eat,... screens
 
 
 # Logs
