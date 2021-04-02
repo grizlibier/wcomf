@@ -19,6 +19,8 @@ public class HelpScreen implements screen {
         terminal.writeCenter("[g] or [,] to pick up stuff from the ground", y++);
         terminal.writeCenter("[d] to drop items from your inventory", y++);
         terminal.writeCenter("[e] to eat edibles", y++);
+        terminal.writeCenter("[u] to use usables", y++);
+        terminal.writeCenter("[c] to craft known recipes", y++);
         terminal.writeCenter("[w] to wear armor or wield weapons", y++);
         terminal.writeCenter("[h] for help", y++);
         terminal.writeCenter("[x] to examine your items", y++);

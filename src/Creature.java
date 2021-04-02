@@ -11,7 +11,7 @@ public class Creature {
 	public int z;
 	
 
-	List<Effect> effects;
+	private List<Effect> effects;
 	public List<Effect> effects(){ return effects; }
 
 	private String name;
@@ -63,6 +63,9 @@ public class Creature {
     
     private Inventory inventory;
     public Inventory inventory() { return inventory; }
+
+	private RecipesRemembered recipes;
+	public RecipesRemembered recipes() { return recipes; }
 
     public boolean canSee(int wx, int wy, int wz){
         return (detectCreatures > 0 && world.creature(wx, wy, wz) != null
@@ -127,14 +130,15 @@ public class Creature {
     		doAction("eat " + item.name());
         	consume(item);
     	} else if (item.isAScroll()) {
+			doAction("read " + item.name());
     		consume(item);
-    	}
+    	} else if (item.isAUsable) {
+			doAction("use " + item.name());
+			consume(item);
+		}
     }
     
     private void consume(Item item){
-        if (item.foodValue() < 0)
-            notify("Gross!");
-            
         addEffect(item.quaffEffect());
         addEffect(item.foodEffect());
             
@@ -145,9 +149,10 @@ public class Creature {
     }
     
     public void addEffect(Effect effect){
-        if (effect == null)
-            return;
-            
+        if (effect == null){
+			return;
+		}
+
         effect.start(this);
         effects.add(effect);
     }
@@ -165,7 +170,15 @@ public class Creature {
         regenerateMana();   
         effects.removeAll(done);
     }
-    
+
+	public void addRecipe(Spell recipe){
+		if (recipes.isFull()){
+        	notify("Your head is already full of all sorts of things!");
+        } else {
+            recipes.add(recipe);
+        }
+    }
+
 	private int level;
 	public int level() { return level; }
 	
@@ -179,6 +192,7 @@ public class Creature {
         this.defenseValue = defense;
         this.name = name;
         this.inventory = new Inventory(10);
+		this.recipes = new RecipesRemembered(20);
         this.maxFood = 1000;
         this.food = 500;
         this.level = 1;
@@ -293,7 +307,7 @@ public class Creature {
         other.modifyHp(-amount);
         
         if (weapon() != null)
-    		addEffect(this.weapon.weaponEffect());
+    		other.addEffect(this.weapon.weaponEffect());
         
         if (other.hp < 1) {
             gainXp(other);
@@ -344,7 +358,7 @@ public class Creature {
         Item item = new Item('/', color, "a patch of unknown flesh", "A patch of weird-smelling meat.");
         item.modifyFoodValue(250);
 		item.isFood = true;
-        item.setQuaffEffect(new Effect(5){
+        item.setQuaffEffect(new Effect("Poison", 5){
 	        public void start(Creature creature){
 	            creature.doAction("look very sick");
 	        }
@@ -517,7 +531,14 @@ public class Creature {
 	    
 	        unequip(item);
 	        inventory.remove(item);
-	        world.addAtEmptySpace(item, wx, wy, wz);
+			if (item.isDrink){
+				notify("The vial shatters on impact!");
+			} else if ((double)Math.random() > 0.6){
+				world.addAtEmptySpace(item, wx, wy, wz);
+			} else {
+				notify("The item you threw breaks on impact!");
+			}
+	        
 	    }
 	  
 	  private void throwAttack(Item item, Creature other) {
@@ -604,6 +625,12 @@ public class Creature {
 	    
 	    public void castSpell(Spell spell, int x2, int y2) {
 	        Creature other = creature(x2, y2, z);
+
+			if (spell.effect().getName().equals("Cook") || spell.effect().getName().equals("Craft")){
+				if (!this.recipes.contains(spell)){
+					addRecipe(spell);
+				}
+			}
 	        
 	        if (spell.manaCost() > mana){
 	            doAction("point and mumble but nothing happens");

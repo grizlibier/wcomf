@@ -1,12 +1,14 @@
 package ascii_rl;
 
 public class Effect implements Cloneable {
+    protected String name;
     protected int duration;
     
     public boolean isDone() { return duration < 1; }
     
-    public Effect(int duration){
-            this.duration = duration;
+    public Effect(String name ,int duration){
+        this.name = name;    
+        this.duration = duration;
     }
     
     public Effect(Effect other){
@@ -26,6 +28,10 @@ public class Effect implements Cloneable {
 			throw new InternalError(e.toString());
 		}
 	}
+
+    public String getName(){
+        return name;
+    }
     
     public void start(Creature creature){
             

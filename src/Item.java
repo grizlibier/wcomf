@@ -74,6 +74,8 @@ public class Item {
     private int maxMana;
     public int maxMana() { return maxMana; }
     public void modifyMaxMana(int amount) { maxMana += amount; }
+
+    public boolean isAUsable;
     
     private List<Spell> writtenSpells;
     public List<Spell> writtenSpells() { return writtenSpells; }

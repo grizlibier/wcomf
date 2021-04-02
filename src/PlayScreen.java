@@ -52,30 +52,34 @@ public class PlayScreen implements screen {
 				if (z > 5 && z < 10)
 					creatureFactory.randomHigherCreature(z, player);
 			}
+            for (int i = 0; i <  world.height() / 30; i++){
+            	creatureFactory.randomUsables(z, player);
+            }
 			if (z == 10)
 				creatureFactory.newArtifact(z);
 		}
 	}
     
-    private void createItems(StuffFactory ItemFactory) {
+    private void createItems(StuffFactory itemFactory) {
+
         for (int z = 0; z < world.depth(); z++){
             for (int i = 0; i <  world.height() / 5; i++){
-            	ItemFactory.randomItem(z);
-                ItemFactory.newWater(z);
+            	itemFactory.randomItem(z);
+                itemFactory.newWater(z);
             }
             for (int i = 0; i <  world.height() / 10; i++){
-            	ItemFactory.randomArmor(z);
-                ItemFactory.randomWeapon(z);
+            	itemFactory.randomArmor(z);
+                itemFactory.randomWeapon(z);
             }
-            for (int i = 0; i <  world.height() / 15; i++){
-            	ItemFactory.randomFood(z);
-                ItemFactory.randomScrolls(z);
+            for (int i = 0; i <  world.height() / 1; i++){
+            	itemFactory.randomFood(z);
+                itemFactory.randomScrolls(z);
             }
             for (int i = 0; i <  world.height() / 20; i++){
-            	ItemFactory.randomBook(z);
+            	itemFactory.randomBook(z);
             }
             for (int i = 0; i <  world.height() / 25; i++){
-            	ItemFactory.randomPotion(z);
+            	itemFactory.randomPotion(z);
             }
         }
     }
@@ -156,6 +160,8 @@ public class PlayScreen implements screen {
         	case KeyEvent.VK_NUMPAD3: player.moveBy( 1, 1, 0); if (subscreen == null) { world.update(); } turn++; break;
             case KeyEvent.VK_D: subscreen = new DropScreen(player); if (subscreen == null) { world.update(); } turn++; break;
             case KeyEvent.VK_E: subscreen = new EatScreen(player); if (subscreen == null) { world.update(); } turn++; break;
+            case KeyEvent.VK_U: subscreen = new UseScreen(player); if (subscreen == null) { world.update(); } turn++; break;
+            case KeyEvent.VK_C: subscreen = new CraftScreen(player); if (subscreen == null) { world.update(); } turn++; break;
             case KeyEvent.VK_W: subscreen = new EquipScreen(player); if (subscreen == null) { world.update(); } turn++; break;
             case KeyEvent.VK_H: subscreen = new HelpScreen(); if (subscreen == null) { world.update(); } turn++; break;
             case KeyEvent.VK_X: subscreen = new ExamineScreen(player); if (subscreen == null) { world.update(); } turn++; break;
@@ -210,7 +216,7 @@ public class PlayScreen implements screen {
         		return new LoseScreenThirst();
         	} else if (player.maxFood() > 1000 && player.food() > 0) {
         		return new LoseScreenOvereating();
-        	} else if (!player.effects.isEmpty()) {
+        	} else if (!player.effects().isEmpty()) {
         		return new LoseScreenPoison();
         	} else {
         		return new LoseScreen();

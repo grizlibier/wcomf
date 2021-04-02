@@ -13,8 +13,8 @@ public class Inventory {
     public void add(Item item){
         for (int i = 0; i < items.length; i++){
             if (items[i] == null){
-                 items[i] = item;
-                 break;
+                items[i] = item;
+                break;
             }
         }
     }
@@ -22,8 +22,8 @@ public class Inventory {
     public void remove(Item item){
         for (int i = 0; i < items.length; i++){
             if (items[i] == item){
-                 items[i] = null;
-                 return;
+                items[i] = null;
+                return;
             }
         }
     }
@@ -32,7 +32,7 @@ public class Inventory {
         int size = 0;
         for (int i = 0; i < items.length; i++){
             if (items[i] != null)
-                 size++;
+                size++;
         }
         return size == items.length;
     }

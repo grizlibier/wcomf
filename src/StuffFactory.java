@@ -15,7 +15,7 @@ public class StuffFactory {
 	// EFFECTS
 	
 	public Effect Poisoned(int amount) {
-		Effect poison = new Effect(amount){
+		Effect poison = new Effect("Poison", amount){
 	        public void start(Creature creature){
 	            creature.notify("You feel the poison enter your bloodstream.");
 	        }
@@ -30,7 +30,7 @@ public class StuffFactory {
 	}
 	
 	public Effect Bleeding(int amount) {
-		Effect bleed = new Effect(amount){
+		Effect bleed = new Effect("Bleeding", amount){
 	        public void start(Creature creature){
 	            creature.notify("You notice that you're bleeding.");
 	        }
@@ -45,7 +45,7 @@ public class StuffFactory {
 	}
 	
 	public Effect InstantMinorHeal() {
-		Effect instantMinorHeal = new Effect(1){
+		Effect instantMinorHeal = new Effect("Heal", 1){
 	        public void start(Creature creature){
 	            if (creature.hp() == creature.maxHp())
 	                return;
@@ -58,7 +58,7 @@ public class StuffFactory {
 	}
 	
 	public Effect MinorMana() {
-		Effect minorMana = new Effect(1){
+		Effect minorMana = new Effect("Mana", 1){
 	        public void start(Creature creature){
 	            if (creature.mana() == creature.maxMana())
 	                return;
@@ -104,6 +104,59 @@ public class StuffFactory {
 
 	public Item newBowl(int depth){
 		Item item = new Item('^', AsciiPanel.yellow, "a bowl", "A wooden bowl, it is empty.");
+		world.addAtEmptyItemLocation(item, depth);
+		return item;
+	}
+
+	// USABLES
+
+	public Item newDirtyBandages(int depth, Creature player){
+		Item item = new Item('*', AsciiPanel.white, "a dirty bandage", "A dirty piece of bandage, using it can infect your wounds.");
+		item.setFoodEffect(new Effect("Cure", 1){
+			public void start(Creature player){
+				for (Effect effect: player.effects()){
+					if (effect.getName().equals("Bleeding") ){
+						effect.isDone();
+					}
+				}
+			}
+		});
+		if ((double)Math.random() > 0.3){
+			item.setQuaffEffect(Poisoned(10));			
+		}
+		item.isAUsable = true;
+		world.addAtEmptyItemLocation(item, depth);
+		return item;
+	}
+
+	public Item newCleanBandages(int depth, Creature player){
+		Item item = new Item('*', AsciiPanel.white, "a clean bandage", "A clean piece of bandage, it feels good on your skin.");
+		item.setFoodEffect(new Effect("Cure", 1){
+			public void start(Creature player){
+				for (Effect effect: player.effects()){
+					if (effect.getName().equals("Bleeding") ){
+						effect.isDone();
+					}
+				}
+			}
+		});
+		item.isAUsable = true;
+		world.addAtEmptyItemLocation(item, depth);
+		return item;
+	}
+
+	public Item newAntidote(int depth, Creature player){
+		Item item = new Item('*', AsciiPanel.green, "a bottle of antidote", "This bitter liquid can cure any poison.");
+		item.setFoodEffect(new Effect("Cure", 1){
+			public void start(Creature player){
+				for (Effect effect: player.effects()){
+					if (effect.getName().equals("Poison") ){
+						effect.isDone();
+					}
+				}
+			}
+		});
+		item.isAUsable = true;
 		world.addAtEmptyItemLocation(item, depth);
 		return item;
 	}
@@ -187,6 +240,13 @@ public class StuffFactory {
 	public Item newSword(int depth){
 		Item item = new Item(')', AsciiPanel.brightWhite, "a sword", "It's rusty and old, but it gets the job done.");
 		item.modifyAttackValue(10);
+		world.addAtEmptyItemLocation(item, depth);
+		return item;
+	}
+
+	public Item newExe(int depth){
+		Item item = new Item(')', AsciiPanel.yellow, "an exe", "It had a rusty blade, but it stil cuts.");
+		item.modifyAttackValue(12);
 		world.addAtEmptyItemLocation(item, depth);
 		return item;
 	}
@@ -290,7 +350,7 @@ public class StuffFactory {
 	public Item newArmorOfHealing(int depth, Creature creature){
 	    Item item = new Item('[', AsciiPanel.red, "an armor of healing", "You feel that this armor is different.");
 	    item.modifyDefenseValue(4);
-	    item.setArmorEffect(new Effect(1){
+	    item.setArmorEffect(new Effect("Heal", 1){
 	        public void update(Creature creature){
 	            while (creature.hp() < 50 ) {
 	            	creature.modifyHp(15);
@@ -342,7 +402,7 @@ public class StuffFactory {
 	public Creature newBones(int depth, Creature player){
 	    Creature bones = new Creature(world, 'B', AsciiPanel.white, 30, 15, 0, "wandering bones");
 	    bones.equip(randomArmor(depth));
-		if (Math.random() > 0.5)
+		if ((double)Math.random() > 0.5)
 			bones.equip(newGreatSword(depth));
 	    world.addAtEmptyLocation(bones, depth);
 	    new BonesAi(bones, player);
@@ -441,7 +501,6 @@ public class StuffFactory {
 	    item.modifyThirstValue(5);
 		item.isDrink = true;
 	    item.setQuaffEffect(Poisoned(10));
-	                
 	    world.addAtEmptyItemLocation(item, depth);
 	    return item;
 	}
@@ -450,22 +509,22 @@ public class StuffFactory {
 	    Item item = new Item('!', AsciiPanel.white, "a warrior's potion", "Makes you a bit stronger, don't overuse it.");
 	    item.modifyThirstValue(5);
 		item.isDrink = true;
-	    item.setQuaffEffect(new Effect(20){
+	    item.setQuaffEffect(new Effect("Buff", 20){
 	        public void start(Creature creature){
 	            creature.modifyAttackValue(5);
 	            creature.modifyDefenseValue(5);
 	            creature.doAction("look stronger");
 	        }
 	        public void end(Creature creature){
-				if (Math.random() > 0.3){
+				if ((double)Math.random() > 0.3){
 					creature.modifyAttackValue(-5);
 	            	creature.modifyDefenseValue(-5);
+					creature.doAction("look less strong");
 				} else {
 					creature.modifyAttackValue(-7);
 	            	creature.modifyDefenseValue(-2);
+					creature.doAction("feel the side effects kick in");
 				}
-	            
-	            creature.doAction("look less strong");
 	        }
 	    });
 	                
@@ -486,7 +545,7 @@ public class StuffFactory {
 	    Item item = new Item('!', AsciiPanel.brightBlack, "a potion of vision", "See better in the darkness.");
 	    item.modifyThirstValue(5);
 		item.isDrink = true;
-	    item.setQuaffEffect(new Effect(10){
+	    item.setQuaffEffect(new Effect("Buff", 10){
 	        public void start(Creature creature){
 	            creature.modifyVision(2);
 	            creature.doAction("can see better then before");
@@ -505,7 +564,7 @@ public class StuffFactory {
 	    Item item = new Item('!', AsciiPanel.brightBlack, "a potion of blindness", "Blind your enemies and escape!");
 	    item.modifyThirstValue(5);
 		item.isDrink = true;
-	    item.setQuaffEffect(new Effect(5){
+	    item.setQuaffEffect(new Effect("Debuff", 5){
 	        public void start(Creature creature){
 	            creature.modifyVision(-2);
 	            creature.doAction("can't see that well anymore");
@@ -525,14 +584,14 @@ public class StuffFactory {
 	public Item newScrollMeat(int depth) {
 		Item scroll = new Item('=', AsciiPanel.brightBlack, "a crafting scroll (cooked meat)", "A crumbled note with a recipe.");
 		scroll.setScroll(scroll);
-		scroll.addWrittenSpell("cook meat", 5, new Effect(1) {
+		scroll.addWrittenSpell("cook meat", 5, new Effect("Cook", 1) {
 			public void start(Creature player) {
 				if (player.inventory().contains(newRock(depth)) && player.inventory().contains(newWater(depth)) && player.inventory().contains(newUnknownFlesh(depth))) { 
 					player.inventory().remove(newRock(depth));
 					player.inventory().remove(newWater(depth));
 					player.inventory().remove(newUnknownFlesh(depth));
 					player.notify("You use some mana to heat the stone and the water.");
-					if (Math.random() > 0.3) {
+					if ((double)Math.random() > 0.3) {
 						player.inventory().add(newCookedMeat(depth));
 						player.notify("You manage to cook the meat nicely");
 					} else {
@@ -551,13 +610,13 @@ public class StuffFactory {
 	public Item newScrollJavelin(int depth) {
 		Item scroll = new Item('=', AsciiPanel.brightBlack, "a crafting scroll (javelin)", "A crumbled note with a recipe.");
 		scroll.setScroll(scroll);
-		scroll.addWrittenSpell("make a javelin", 2, new Effect(1){
+		scroll.addWrittenSpell("make a javelin", 2, new Effect("Craft", 1){
 			public void start(Creature player){
 				if (player.inventory().contains(newStick(depth)) && player.inventory().contains(newRock(depth))){
 					player.inventory().remove(newStick(depth));
 					player.inventory().remove(newRock(depth));
 					player.notify("You sit down and start crafting...");
-					if (Math.random() > 0.2) {
+					if ((double)Math.random() > 0.2) {
 						player.inventory().add(newJavelin(depth));
 						player.notify("You manage to make a javalin.");
 					} else {
@@ -577,19 +636,46 @@ public class StuffFactory {
 	public Item newScrollSoup(int depth){
 		Item scroll = new Item('=', AsciiPanel.brightBlack, "a crafting scroll (soup)", "A crumbled note with a recipe.");
 		scroll.setScroll(scroll);
-		scroll.addWrittenSpell("cook soup", 2, new Effect(1){
+		scroll.addWrittenSpell("cook soup", 2, new Effect("Cook", 1){
 			public void start(Creature player){
 				if (player.inventory().contains(newBowl(depth)) && player.inventory().contains(newUnknownFlesh(depth)) && player.inventory().contains(newWater(depth))){
 					player.inventory().remove(newBowl(depth));
 					player.inventory().remove(newUnknownFlesh(depth));
 					player.inventory().remove(newWater(depth));
 					player.notify("You sit down and start cooking...");
-					if (Math.random() > 0.2) {
+					if ((double)Math.random() > 0.2) {
 						player.inventory().add(newSoup(depth));
 						player.notify("You manage to cook some soup.");
 					} else {
 						player.modifyHp(-5);
 						player.notify("You were clumsy enough to drop the bowl with water on the ground!");
+					}
+				} else {
+					player.notify("You don't have the needed items!");
+				}
+			}
+		});
+		world.addAtEmptyItemLocation(scroll, depth);
+		return scroll;
+	}
+
+	// to-do: make a crafting scroll for clean bandages and include it into randomScrolls method
+	public Item newBandage(int depth){
+		Item scroll = new Item('=', AsciiPanel.brightBlack, "a crafting scroll (clean bandage)", "A crumbled note with a recipe.");
+		scroll.setScroll(scroll);
+		scroll.addWrittenSpell("craft bandage", 2, new Effect("Craft", 1){
+			public void start(Creature player){
+				if (player.inventory().contains(newBowl(depth)) && player.inventory().contains(newDirtyBandages(depth, player)) && player.inventory().contains(newWater(depth))){
+					player.inventory().remove(newBowl(depth));
+					player.inventory().remove(newDirtyBandages(depth, player));
+					player.inventory().remove(newWater(depth));
+					player.notify("You sit down and start boiling water...");
+					if ((double)Math.random() > 0.2) {
+						player.inventory().add(newSoup(depth));
+						player.notify("You manage to desinfect the bandage in boiling water.");
+					} else {
+						player.modifyHp(-5);
+						player.notify("You dropped the bandage on the ground, slipped on it and fell!");
 					}
 				} else {
 					player.notify("You don't have the needed items!");
@@ -611,7 +697,7 @@ public class StuffFactory {
 	public Item newScrollLightning(int depth) {
 		Item scroll = new Item('=', AsciiPanel.blue, "a scroll of lightning bolt", "A one-use scroll.");
 		scroll.setScroll(scroll);
-		scroll.addWrittenSpell("lightning bolt", 5, new Effect(1){
+		scroll.addWrittenSpell("lightning bolt", 5, new Effect("Magic", 1){
             public void start(Creature creature){
                 creature.modifyHp(-20);
             }
@@ -623,7 +709,7 @@ public class StuffFactory {
 	public Item newScrollPoison(int depth) {
 		Item scroll = new Item('=', AsciiPanel.brightBlack, "a scroll of poisoned bolt", "A one-use scroll.");
 		scroll.setScroll(scroll);
-		scroll.addWrittenSpell("poisoned bolt", 5, new Effect(1){
+		scroll.addWrittenSpell("poisoned bolt", 5, new Effect("Magic", 1){
             public void start(Creature creature){
                 creature.modifyHp(-10);
                 creature.addEffect(Poisoned(5));
@@ -636,7 +722,7 @@ public class StuffFactory {
 	public Item newScrollShield(int depth) {
 		Item scroll = new Item('=', AsciiPanel.brightBlack, "a scroll of magic shield", "A one-use scroll.");
 		scroll.setScroll(scroll);
-		scroll.addWrittenSpell("magic shield", 6, new Effect(5){
+		scroll.addWrittenSpell("magic shield", 6, new Effect("Magic", 5){
             public void start(Creature creature){
                 creature.modifyDefenseValue(5);
                 creature.doAction("are covered by magical particles which protect your vitalas");
@@ -654,7 +740,7 @@ public class StuffFactory {
 	public Item newScrollSupply(int depth) {
 		Item scroll = new Item('=', AsciiPanel.brightBlack, "a scroll of supplies", "A one-use scroll.");
 		scroll.setScroll(scroll);
-		scroll.addWrittenSpell("magical supplies", 10,  new Effect(2){
+		scroll.addWrittenSpell("magical supplies", 10,  new Effect("Magic", 2){
             public void start(Creature creature){
                 creature.modifyFood(150);
                 creature.modifyThirst(15);
@@ -677,7 +763,7 @@ public class StuffFactory {
 	
 	public Item newWhiteMagesSpellbook(int depth) {
         Item item = new Item('+', AsciiPanel.brightWhite, "a white mage's spellbook", "A book with spells, left by a warmage.");
-        item.addWrittenSpell("minor heal", 4, new Effect(1){
+        item.addWrittenSpell("minor heal", 4, new Effect("Heal", 1){
             public void start(Creature creature){
                 if (creature.hp() == creature.maxHp())
                     return;
@@ -687,7 +773,7 @@ public class StuffFactory {
             }
         });
         
-        item.addWrittenSpell("major heal", 8, new Effect(1){
+        item.addWrittenSpell("major heal", 8, new Effect("Heal", 1){
             public void start(Creature creature){
                 if (creature.hp() == creature.maxHp())
                     return;
@@ -697,14 +783,14 @@ public class StuffFactory {
             }
         });
         
-        item.addWrittenSpell("slow regenerate", 12, new Effect(20){
+        item.addWrittenSpell("slow regenerate", 12, new Effect("Heal", 20){
             public void update(Creature creature){
                 super.update(creature);
                 creature.modifyHp(2);
             }
         });
 
-        item.addWrittenSpell("inner strength", 16, new Effect(5){
+        item.addWrittenSpell("inner strength", 16, new Effect("Buff", 5){
             public void start(Creature creature){
                 creature.modifyAttackValue(2);
                 creature.modifyDefenseValue(2);
@@ -715,7 +801,7 @@ public class StuffFactory {
             }
             public void update(Creature creature){
                 super.update(creature);
-                if (Math.random() < 0.25)
+                if ((double)Math.random() < 0.25)
                     creature.modifyHp(5);
             }
             public void end(Creature creature){
@@ -734,7 +820,7 @@ public class StuffFactory {
 	public Item newBlueMagesSpellbook(int depth) {
         Item item = new Item('+', AsciiPanel.brightBlue, "a blue mage's spellbook", "A book with spells, left by a scouting mage.");
 
-        item.addWrittenSpell("blood to mana", 1, new Effect(1){
+        item.addWrittenSpell("blood to mana", 1, new Effect("Magic", 1){
             public void start(Creature creature){
                 int amount = Math.min(creature.hp() - 1, creature.maxMana() - creature.mana());
                 creature.modifyHp(-amount);
@@ -742,7 +828,7 @@ public class StuffFactory {
             }
         });
         
-        item.addWrittenSpell("blink", 6, new Effect(1){
+        item.addWrittenSpell("blink", 6, new Effect("Magic", 1){
             public void start(Creature creature){
                 creature.doAction("fade out");
                 
@@ -763,7 +849,7 @@ public class StuffFactory {
             }
         });
         
-        item.addWrittenSpell("detect creatures", 16, new Effect(25){
+        item.addWrittenSpell("detect creatures", 16, new Effect("Magic", 25){
             public void start(Creature creature){
                 creature.doAction("look far off into the distance");
                 creature.modifyDetectCreatures(1);
@@ -779,7 +865,7 @@ public class StuffFactory {
 	public Item newRedMagesSpellbook(int depth) {
         Item item = new Item('+', AsciiPanel.red, "a red mage's spellbook", "A book with spells, left by a blood mage.");
         
-        item.addWrittenSpell("leech lifeforce", 1, new Effect(1){
+        item.addWrittenSpell("leech lifeforce", 1, new Effect("Magic", 1){
             public void start(Creature creature, Creature other){
                 int amount = Math.min(creature.hp() - 15, creature.maxMana() - creature.mana());
                 other.modifyHp(-amount);
@@ -787,7 +873,7 @@ public class StuffFactory {
             }
         });
         
-        item.addWrittenSpell("missile of blood", 1, new Effect(1){
+        item.addWrittenSpell("missile of blood", 1, new Effect("Magic", 1){
             public void start(Creature creature, Creature other){
                 int amount = Math.min(creature.hp() - 10, creature.maxMana() - creature.mana());
                 other.modifyHp(-amount * 3);
@@ -795,7 +881,7 @@ public class StuffFactory {
             }
         });
         
-        item.addWrittenSpell("summon bats", 11, new Effect(1){
+        item.addWrittenSpell("summon bats", 11, new Effect("Magic", 1){
             public void start(Creature creature){
                 for (int ox = -1; ox < 2; ox++){
                     for (int oy = -1; oy < 2; oy++){
@@ -829,7 +915,7 @@ public class StuffFactory {
 	public Item newOccultSpellbook(int depth) {
         Item item = new Item('+', AsciiPanel.red, "an occult spellbook", "A book with spells, left by an occultist.");
         
-        item.addWrittenSpell("leech lifeforce", 1, new Effect(1){
+        item.addWrittenSpell("leech lifeforce", 1, new Effect("Magic", 1){
             public void start(Creature creature, Creature other){
                 int amount = Math.min(creature.hp() - 15, creature.maxMana() - creature.mana());
                 other.modifyHp(-amount);
@@ -837,7 +923,7 @@ public class StuffFactory {
             }
         });
         
-        item.addWrittenSpell("eldrich tentacle", 5, new Effect(1){
+        item.addWrittenSpell("eldrich tentacle", 5, new Effect("Magic", 1){
             public void start(Creature creature, Creature other){
                 int amount = creature.hp() / 3;
                 other.modifyHp(-amount * 2);
@@ -845,7 +931,7 @@ public class StuffFactory {
             }
         });
         
-		item.addWrittenSpell("the abyss", 10, new Effect(5){
+		item.addWrittenSpell("the abyss", 10, new Effect("Magic", 5){
 			public void start(Creature self){
 				self.modifyDefenseValue(10);
 				self.modifyAttackValue(15);
@@ -886,13 +972,14 @@ public class StuffFactory {
 	}
 	
 	public Item randomWeapon(int depth){
-	    switch ((int)(Math.random() * 7)){
+	    switch ((int)(Math.random() * 8)){
 			case 0: return newDagger(depth);
 			case 1: return newSword(depth);
 			case 2: return newBow(depth);
 			case 3: return newJavelin(depth);
 			case 4: return newShuriken(depth);
 			case 5: return newFlail(depth);
+			case 6: return newExe(depth);
 			default: return newStaff(depth);
 	    }
 	}
@@ -961,7 +1048,7 @@ public class StuffFactory {
 	}
 	
 	public Item randomScrolls(int depth){
-        switch ((int)(Math.random() * 8)){
+        switch ((int)(Math.random() * 9)){
 			case 0: return newScrollLightning(depth);
 			case 1: return newScrollPoison(depth);
 			case 2: return newScrollShield(depth);
@@ -969,7 +1056,15 @@ public class StuffFactory {
 			case 4: return newScrollMeat(depth);
 			case 5: return newScrollJavelin(depth);
 			case 6: return newScrollSoup(depth);
+			case 7: return newBandage(depth);
 			default: return newScrollHeal(depth);
         }
+	}
+
+	public Item randomUsables(int depth, Creature player){
+		switch ((int)(Math.random() * 2)){
+			case 0: return newAntidote(depth, player);
+			default: return newDirtyBandages(depth, player);
+		}
 	}
 }

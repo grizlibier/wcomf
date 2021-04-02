@@ -21,7 +21,7 @@ public abstract class InventoryBasedScreen implements screen {
     public void displayOutput(AsciiPanel terminal) {
         ArrayList<String> lines = getList();
     
-        int y = 23 - lines.size();
+        int y = 23 + lines.size();
         int x = 4;
 
         if (lines.size() > 0)
