@@ -71,7 +71,7 @@ public class PlayScreen implements screen {
             	itemFactory.randomArmor(z);
                 itemFactory.randomWeapon(z);
             }
-            for (int i = 0; i <  world.height() / 1; i++){
+            for (int i = 0; i <  world.height() / 15; i++){
             	itemFactory.randomFood(z);
                 itemFactory.randomScrolls(z);
             }
