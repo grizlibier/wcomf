@@ -22,7 +22,9 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 - General changes
 
--> thrown weapons can now break upon being thrown
+-> thrown weapons (and other items) can now break upon being thrown
+
+-> throwing potions will result in their permanent loss, no magic potion-recuperation anymore!
 
 -> updated the helpscreen
 
@@ -30,11 +32,17 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 -> some spells won't need you to specify the target anymore
 
+-> minor rework of food and thirst
+
+-> the water seems funny... be carefull when drinking it
+
+-> added a new deathscreen
+
 - New items and crafting recipes
 
 -> added an exe (weapon)
 
--> added usable items to cure effects and a 'use' function
+-> added usable items to cure some effects and a 'use' function
 
 - Possibility to remember recipes has been added!
 
