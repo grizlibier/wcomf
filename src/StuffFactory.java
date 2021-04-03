@@ -160,6 +160,38 @@ public class StuffFactory {
 		world.addAtEmptyItemLocation(item, depth);
 		return item;
 	}
+
+	public Item newRestoreLeaf(int depth, Creature player){
+		Item item = new Item('*', AsciiPanel.green, "a leaf of restoration", "Applying this leaf directly to the skin may restore strength and vigor.");
+		item.setFoodEffect(new Effect("Debuff", 1){
+			public void start(Creature player){
+				for (Effect effect: player.effects()){
+					if (effect.getName().equals("Poison") && (double)Math.random() > 0.5 ){
+						effect.isDone();
+					}
+				}
+			}
+		});
+		item.isAUsable = true;
+		world.addAtEmptyItemLocation(item, depth);
+		return item;
+	}
+
+	public Item newRestorePaste(int depth, Creature player){
+		Item item = new Item('*', AsciiPanel.green, "a paste of restoration", "Applying this paste directly to the skin will restore strength and vigor.");
+		item.setFoodEffect(new Effect("Debuff", 1){
+			public void start(Creature player){
+				for (Effect effect: player.effects()){
+					if (effect.getName().equals("Poison") ){
+						effect.isDone();
+					}
+				}
+			}
+		});
+		item.isAUsable = true;
+		world.addAtEmptyItemLocation(item, depth);
+		return item;
+	}
 	
 	// FOOD
 
@@ -184,10 +216,25 @@ public class StuffFactory {
         item.modifyFoodValue(10);
         item.modifyThirstValue(35);
 		item.isDrink = true;
+		if ((double)Math.random() > 0.4){
+			item.setQuaffEffect(Poisoned(2));
+		}
         world.addAtEmptyItemLocation(item, depth);
         return item;
     }
-	
+
+	public Item newBoiledWater(int depth){
+        Item item = new Item((char)247, AsciiPanel.blue, "a bottle of boiled water", "It tastes slightly better then normal, but soem germs might remain.");
+        item.modifyFoodValue(5);
+        item.modifyThirstValue(30);
+		item.isDrink = true;
+		if ((float)Math.random() > 0.95){
+			item.setQuaffEffect(Poisoned(2));
+		}
+        world.addAtEmptyItemLocation(item, depth);
+        return item;
+    }
+
 	public Item newUnknownFlesh(int depth){
         Item item = new Item('/', AsciiPanel.yellow, "a patch of unknown flesh", "A patch of weird-smelling meat.");
         item.modifyFoodValue(200);
@@ -567,11 +614,11 @@ public class StuffFactory {
 	    item.setQuaffEffect(new Effect("Debuff", 5){
 	        public void start(Creature creature){
 	            creature.modifyVision(-2);
-	            creature.doAction("can't see that well anymore");
+	            creature.notify("You can't see that well anymore");
 	        }
 	        public void end(Creature creature){
 	        	creature.modifyVision(2);
-	            creature.doAction("regain your original vision");
+	            creature.notify("You regain your original vision");
 	        }
 	    });
 	                
@@ -579,7 +626,7 @@ public class StuffFactory {
 	    return item;
 	}
 	
-	// BOOKS, SCROLLS, NOTES
+	// CRAFTING SCROLLS
 	
 	public Item newScrollMeat(int depth) {
 		Item scroll = new Item('=', AsciiPanel.brightBlack, "a crafting scroll (cooked meat)", "A crumbled note with a recipe.");
@@ -597,6 +644,9 @@ public class StuffFactory {
 					} else {
 						player.modifyHp(-5);
 						player.notify("You were clumsy enough to throw boiling water over yourself.");
+						if (player.hp() <= 0){
+							player.diedCrafting = true;
+						}
 					}
 				} else {
 					player.notify("You don't have the needed items!");
@@ -623,6 +673,9 @@ public class StuffFactory {
 						player.modifyHp(-5);
 						player.addEffect(Bleeding(2));
 						player.notify("You hurt yourself on a sharp stick, he wound isn't deep but it keeps bleeding!");
+						if (player.hp() <= 0){
+							player.diedCrafting = true;
+						}
 					}
 				} else {
 					player.notify("You don't have the needed items!");
@@ -649,6 +702,9 @@ public class StuffFactory {
 					} else {
 						player.modifyHp(-5);
 						player.notify("You were clumsy enough to drop the bowl with water on the ground!");
+						if (player.hp() <= 0){
+							player.diedCrafting = true;
+						}
 					}
 				} else {
 					player.notify("You don't have the needed items!");
@@ -659,8 +715,7 @@ public class StuffFactory {
 		return scroll;
 	}
 
-	// to-do: make a crafting scroll for clean bandages and include it into randomScrolls method
-	public Item newBandage(int depth){
+	public Item newScrollBandage(int depth){
 		Item scroll = new Item('=', AsciiPanel.brightBlack, "a crafting scroll (clean bandage)", "A crumbled note with a recipe.");
 		scroll.setScroll(scroll);
 		scroll.addWrittenSpell("craft bandage", 2, new Effect("Craft", 1){
@@ -671,11 +726,70 @@ public class StuffFactory {
 					player.inventory().remove(newWater(depth));
 					player.notify("You sit down and start boiling water...");
 					if ((double)Math.random() > 0.2) {
-						player.inventory().add(newSoup(depth));
+						player.inventory().add(newCleanBandages(depth, player));
 						player.notify("You manage to desinfect the bandage in boiling water.");
 					} else {
 						player.modifyHp(-5);
 						player.notify("You dropped the bandage on the ground, slipped on it and fell!");
+						if (player.hp() <= 0){
+							player.diedCrafting = true;
+						}
+					}
+				} else {
+					player.notify("You don't have the needed items!");
+				}
+			}
+		});
+		world.addAtEmptyItemLocation(scroll, depth);
+		return scroll;
+	}
+
+	public Item newScrollPaste(int depth){
+		Item scroll = new Item('=', AsciiPanel.brightBlack, "a crafting scroll (paste of restoration)", "A crumbled note with a recipe.");
+		scroll.setScroll(scroll);
+		scroll.addWrittenSpell("craft paste of restoration", 2, new Effect("Cook", 1){
+			public void start(Creature player){
+				if (player.inventory().contains(newBowl(depth)) && player.inventory().contains(newRestoreLeaf(depth, player)) && player.inventory().contains(newWater(depth))){
+					player.inventory().remove(newBowl(depth));
+					player.inventory().remove(newRestoreLeaf(depth, player));
+					player.inventory().remove(newWater(depth));
+					player.notify("You sit down and start crushing the leaf inside the bowl...");
+					if ((double)Math.random() > 0.2) {
+						player.inventory().add(newRestorePaste(depth, player));
+						player.notify("You manage to make a slimy, green-ish paste.");
+					} else {
+						player.modifyHp(-5);
+						player.notify("You failed to follow the recipe and hit yourself against the floor in frustration!");
+						if (player.hp() <= 0){
+							player.diedCrafting = true;
+						}
+					}
+				} else {
+					player.notify("You don't have the needed items!");
+				}
+			}
+		});
+		world.addAtEmptyItemLocation(scroll, depth);
+		return scroll;
+	}
+
+	public Item newScrollWater(int depth){
+		Item scroll = new Item('=', AsciiPanel.brightBlack, "a crafting scroll (boiled water)", "A crumbled note with a recipe.");
+		scroll.setScroll(scroll);
+		scroll.addWrittenSpell("craft paste of restoration", 2, new Effect("Cook", 1){
+			public void start(Creature player){
+				if (player.inventory().contains(newWater(depth))){
+					player.inventory().remove(newWater(depth));
+					player.notify("You sit down and focus your mana on the vial...");
+					if ((double)Math.random() > 0.2) {
+						player.inventory().add(newBoiledWater(depth));
+						player.notify("You manage to boil the water inside the vial.");
+					} else {
+						player.modifyHp(-5);
+						player.notify("You focus your mana too much and the glass bottle explodes!");
+						if (player.hp() <= 0){
+							player.diedCrafting = true;
+						}
 					}
 				} else {
 					player.notify("You don't have the needed items!");
@@ -686,6 +800,9 @@ public class StuffFactory {
 		return scroll;
 	}
 	
+
+	// NORMAL SCROLLS AND SPELLBOOKS
+
 	public Item newScrollHeal(int depth) {
 		Item scroll = new Item('=', AsciiPanel.brightBlack, "a scroll of healing", "A one-use scroll.");
 		scroll.setScroll(scroll);
@@ -1048,7 +1165,7 @@ public class StuffFactory {
 	}
 	
 	public Item randomScrolls(int depth){
-        switch ((int)(Math.random() * 9)){
+        switch ((int)(Math.random() * 11)){
 			case 0: return newScrollLightning(depth);
 			case 1: return newScrollPoison(depth);
 			case 2: return newScrollShield(depth);
@@ -1056,14 +1173,17 @@ public class StuffFactory {
 			case 4: return newScrollMeat(depth);
 			case 5: return newScrollJavelin(depth);
 			case 6: return newScrollSoup(depth);
-			case 7: return newBandage(depth);
+			case 7: return newScrollBandage(depth);
+			case 8: return newScrollPaste(depth);
+			case 9: return newScrollWater(depth);
 			default: return newScrollHeal(depth);
         }
 	}
 
 	public Item randomUsables(int depth, Creature player){
-		switch ((int)(Math.random() * 2)){
+		switch ((int)(Math.random() * 3)){
 			case 0: return newAntidote(depth, player);
+			case 1: return newRestoreLeaf(depth, player);
 			default: return newDirtyBandages(depth, player);
 		}
 	}

@@ -32,6 +32,8 @@ public class Creature {
     private int hp;
     public int hp() { return hp; }
 
+	public boolean diedCrafting = false;
+
     private int attackValue;
     public int attackValue() {
         return attackValue
@@ -85,9 +87,8 @@ public class Creature {
             food = maxFood;
             notify("You can't believe your stomach can hold that much!");
             modifyHp(-10);
-        } else if (food < 1 && isPlayer()) {
-        	if (food <= 0)
-        		food = 0;
+        } else if (food < 0 && isPlayer()) {
+        	food = 0;
             modifyHp(-25);
             notify("The pain in your stomach reminds you of how hungry you are.");
             
@@ -104,8 +105,9 @@ public class Creature {
 
         if (thirst > 100 && isPlayer()) {
             thirst = 100;
-        } else if (thirst < 1 && isPlayer()) {
-            modifyHp(-25);
+        } else if (thirst < 0 && isPlayer()) {
+            thirst = 0;
+			modifyHp(-25);
             notify("You are severely dehydrated.");
         } else if (thirst > (100 / 2)) {
         	modifyHp(2);
@@ -426,11 +428,11 @@ public class Creature {
     
         if (item.attackValue() + item.rangedAttackValue() >= item.defenseValue() || item.visionRadius() > 0){
             unequip(weapon);
-            doAction("wield a " + item.name());
+            doAction("wield " + item.name());
             weapon = item;
         } else {
             unequip(armor);
-            doAction("put on a " + item.name());
+            doAction("put on " + item.name());
             armor = item;
         }
     }

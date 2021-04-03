@@ -210,11 +210,13 @@ public class PlayScreen implements screen {
         // LOSESCREENS
         
         if (player.hp() < 1) {
-        	if (player.food() < 1) {
+            if (player.diedCrafting){
+                return new LoseScreenFailedCraft();
+            } else if (player.food() < 1) {
         		return new LoseScreenHunger();
         	} else if (player.thirst() < 1) {
         		return new LoseScreenThirst();
-        	} else if (player.maxFood() > 1000 && player.food() > 0) {
+        	} else if (player.maxFood() > 1000 && player.food() == player.maxFood()) {
         		return new LoseScreenOvereating();
         	} else if (!player.effects().isEmpty()) {
         		return new LoseScreenPoison();
