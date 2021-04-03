@@ -46,6 +46,10 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 - Possibility to remember recipes has been added!
 
+-> access the remembered recipes with the new 'craft' function
+
+-> new craftable items and recipes added
+
 - Bugfixing
 
 -> fixed the thrown weapons to deal damage properly
