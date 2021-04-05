@@ -40,7 +40,7 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 -> spells will take multiple turns to cast (finding the book/scroll, reading the spell and casting it needs time after all), think before using them
 
--> you'll start off with 70 thrist now
+-> you'll start off with 70 thirst now due to lower change of finding water
 
 - New items and crafting recipes
 
