@@ -38,6 +38,10 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 -> added a new deathscreen
 
+-> spells will take multiple turns to cast (finding the book/scroll, reading the spell and casting it needs time after all), think before using them
+
+-> you'll start off with 70 thrist now
+
 - New items and crafting recipes
 
 -> added an exe (weapon)
@@ -59,6 +63,8 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 -> weapons won't inflict effects on the player unless it's a feature
 
 -> fixed wrong display of examine, cast, eat,... screens
+
+-> fixed some screens not moving the time but moving the turn counter
 
 
 # Logs
