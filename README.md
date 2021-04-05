@@ -66,6 +66,8 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 -> fixed some screens not moving the time but moving the turn counter
 
+-> fixed the turn counter moving without the screen doing anything or when you cancel a subscreen
+
 
 # Logs
 
