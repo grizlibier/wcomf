@@ -20,6 +20,11 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 -> is being written
 
+
+# Logs
+
+version 0.1(6 apr 2021)
+
 - General changes
 
 -> thrown weapons (and other items) can now break upon being thrown
@@ -68,8 +73,6 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 -> fixed the turn counter moving without the screen doing anything or when you cancel a subscreen
 
-
-# Logs
 
 version 0.0.4(24 mar 2021)
 
