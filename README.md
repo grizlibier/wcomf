@@ -23,6 +23,9 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 # Logs
 
+update 17 apr 2021
+- WCoMF can be found on itch.io! Here's the link: https://grizlibier.itch.io/wcomf
+
 version 0.1(6 apr 2021)
 
 - General changes
