@@ -23,6 +23,13 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 # Logs
 
+version 0.1.1(16 june 2021)
+
+- Environment
+
+-> added lava and poison pits to world generation
+-> lava and poison interact with the player
+
 update 17 apr 2021
 - WCoMF can be found on itch.io! Here's the link: https://grizlibier.itch.io/wcomf
 
