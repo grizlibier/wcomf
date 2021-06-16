@@ -279,7 +279,17 @@ public class Creature {
     }
     
     public void somethingOnTheGround() {
-    	Item item = world.item(x, y, z);
+		Tile tile = world.tile(x, y, z);
+		
+		if (tile.tilename().equals("poison")) { 
+			doAction("step into the pool of weak poison, your legs hurt a bit");
+			this.modifyHp(-5); 
+		} else if (tile.tilename().equals("lava")) {
+			doAction("step into the lava, your feet start to burn");
+			this.modifyHp(-15);
+		}
+
+		Item item = world.item(x, y, z);
     	
     	if (item == null) {
     		return;
@@ -346,7 +356,7 @@ public class Creature {
 	}
 	
 	private void leaveCorpse(){
-        Item corpse = new Item('%', color, name + "a corpse", "A corpse of a slain monster. Is still eatable.");
+        Item corpse = new Item('%', color, name + " corpse", "A corpse of a slain monster. Is still eatable.");
         corpse.modifyFoodValue(maxHp * 2);
 		corpse.isFood = true;
         world.addAtEmptySpace(corpse, x, y, z);

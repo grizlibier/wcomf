@@ -43,7 +43,10 @@ public class WorldBuilder {
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
 				for (int z = 0; z < depth; z++) {
-					tiles[x][y][z] = Math.random() < 0.5 ? Tile.FLOOR : Tile.WALL;
+					if (Math.random() < 0.3) { tiles[x][y][z] = Tile.FLOOR; } 
+						else if (Math.random() < 0.6) { tiles[x][y][z] = Tile.WALL; }
+						else if (Math.random() < 0.8) { tiles[x][y][z] = Tile.POISON_PIT; }
+						else { tiles[x][y][z] = Tile.LAVA_PIT; }
 				}
 			}
 		}
@@ -58,7 +61,9 @@ public class WorldBuilder {
 				for (int y = 0; y < height; y++) {
 					for (int z = 0; z < depth; z++) {
 						int floors = 0;
-						int rocks = 0;
+						int walls = 0;
+						int lavas = 0;
+						int poisons = 0;
 	
 						for (int ox = -1; ox < 2; ox++) {
 							for (int oy = -1; oy < 2; oy++) {
@@ -66,13 +71,16 @@ public class WorldBuilder {
 										|| y + oy >= height)
 									continue;
 	
-								if (tiles[x + ox][y + oy][z] == Tile.FLOOR)
-									floors++;
-								else
-									rocks++;
+								if (tiles[x + ox][y + oy][z] == Tile.FLOOR) { floors++; 
+								} else if (tiles[x + ox][y + oy][z] == Tile.POISON_PIT) { poisons++; 
+								} else if (tiles[x + ox][y + oy][z] == Tile.LAVA_PIT) { lavas++; 
+								} else { walls++; }
 							}
 						}
-						tiles2[x][y][z] = floors >= rocks ? Tile.FLOOR : Tile.WALL;
+						if (floors >= walls && floors >= lavas && floors >= poisons) { tiles2[x][y][z] = Tile.FLOOR; 
+						} else if (lavas >= floors && lavas >= walls && lavas >= poisons) { tiles2[x][y][z] = Tile.LAVA_PIT; 
+						} else if (poisons >= walls && poisons >= lavas && poisons >= floors) { tiles2[x][y][z] = Tile.POISON_PIT; 
+						} else { tiles2[x][y][z] = Tile.WALL; }
 					}
 				}
 			}

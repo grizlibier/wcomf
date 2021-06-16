@@ -212,7 +212,7 @@ public class StuffFactory {
     }
 	
 	public Item newWater(int depth){
-        Item item = new Item((char)247, AsciiPanel.blue, "a bottle of water", "Who left a bottle of water here?");
+        Item item = new Item((char)168, AsciiPanel.blue, "a bottle of water", "Who left a bottle of water here?");
         item.modifyFoodValue(10);
         item.modifyThirstValue(35);
 		item.isDrink = true;
@@ -331,6 +331,15 @@ public class StuffFactory {
 		world.addAtEmptyItemLocation(item, depth);
 		return item;
 	}
+
+	public Item newMorningStar(int depth){
+		Item item = new Item(')', AsciiPanel.yellow, "a morning star", "A heavy, spiky ball chained to a stick.");
+		item.modifyAttackValue(5);
+		item.modifyDefenseValue(5);
+		item.setWeaponEffect(Bleeding(5));
+		world.addAtEmptyItemLocation(item, depth);
+		return item;
+	}
 	
 	// RANGED AND THROWING WEAPONS
 	
@@ -338,6 +347,15 @@ public class StuffFactory {
         Item item = new Item(')', AsciiPanel.yellow, "a bow with arrows", "A normal bow with a mana-infused quiver.");
         item.modifyAttackValue(1);
         item.modifyRangedAttackValue(7);
+        world.addAtEmptyItemLocation(item, depth);
+        return item;
+    }
+
+	public Item newCrossbow(int depth){
+        Item item = new Item(')', AsciiPanel.yellow, "a crossbow with bolts", "An old crossbow with a mana-infused quiver.");
+        item.modifyAttackValue(2);
+		item.modifyDefenseValue(2);
+        item.modifyRangedAttackValue(10);
         world.addAtEmptyItemLocation(item, depth);
         return item;
     }
@@ -358,24 +376,17 @@ public class StuffFactory {
     }
 	
 	// ARMOR
+
+	public Item newWoolArmor(int depth){
+		Item item = new Item('[', AsciiPanel.yellow, "a woolen cap", "Keeps you warm, but gets in the way when fighting.");
+		item.modifyDefenseValue(1);
+		world.addAtEmptyItemLocation(item, depth);
+	    return item;
+	}
   
 	public Item newLightArmor(int depth){
 	    Item item = new Item('[', AsciiPanel.green, "a tunic", "A light tunic made from leather.");
 	    item.modifyDefenseValue(2);
-	    world.addAtEmptyItemLocation(item, depth);
-	    return item;
-	}
-
-	public Item newMediumArmor(int depth){
-	    Item item = new Item('[', AsciiPanel.white, "a chainmail", "A mail of fine iron rings, some of them are rusted though.");
-	    item.modifyDefenseValue(4);
-	    world.addAtEmptyItemLocation(item, depth);
-	    return item;
-	}
-
-	public Item newHeavyArmor(int depth){
-	    Item item = new Item('[', AsciiPanel.brightWhite, "a platemail", "Heavy and bulky, dented at some places, yet reliable.");
-	    item.modifyDefenseValue(6);
 	    world.addAtEmptyItemLocation(item, depth);
 	    return item;
 	}
@@ -387,10 +398,24 @@ public class StuffFactory {
 	    return item;
 	}
 
-	public Item newWoolArmor(int depth){
-		Item item = new Item('[', AsciiPanel.yellow, "a woolen cap", "Keeps you warm, but gets in the way when fighting.");
-		item.modifyDefenseValue(1);
+	public Item newMediumArmor(int depth){
+	    Item item = new Item('[', AsciiPanel.white, "a chainmail", "A mail of fine iron rings, some of them are rusted though.");
+	    item.modifyDefenseValue(4);
+	    world.addAtEmptyItemLocation(item, depth);
+	    return item;
+	}
+
+	public Item newReinforcedArmor(int depth){
+		Item item = new Item('[', AsciiPanel.yellow, "a lieutenants armor", "A leather armor reinforced with metal plates and rings.");
+		item.modifyDefenseValue(5);
 		world.addAtEmptyItemLocation(item, depth);
+	    return item;
+	}
+
+	public Item newHeavyArmor(int depth){
+	    Item item = new Item('[', AsciiPanel.brightWhite, "a platemail", "Heavy and bulky, dented at some places, yet reliable.");
+	    item.modifyDefenseValue(6);
+	    world.addAtEmptyItemLocation(item, depth);
 	    return item;
 	}
 	
@@ -1089,7 +1114,7 @@ public class StuffFactory {
 	}
 	
 	public Item randomWeapon(int depth){
-	    switch ((int)(Math.random() * 8)){
+	    switch ((int)(Math.random() * 10)){
 			case 0: return newDagger(depth);
 			case 1: return newSword(depth);
 			case 2: return newBow(depth);
@@ -1097,6 +1122,8 @@ public class StuffFactory {
 			case 4: return newShuriken(depth);
 			case 5: return newFlail(depth);
 			case 6: return newExe(depth);
+			case 7: return newMorningStar(depth);
+			case 8: return newCrossbow(depth);
 			default: return newStaff(depth);
 	    }
 	}
@@ -1107,6 +1134,7 @@ public class StuffFactory {
 			case 1: return newMediumArmor(depth);
 			case 2: return newHeavyArmor(depth);
 			case 3: return newWoolArmor(depth);
+			case 4: return newReinforcedArmor(depth);
 			default: return newDustyArmor(depth);
 	    }
 	}

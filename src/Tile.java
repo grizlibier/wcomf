@@ -4,20 +4,26 @@ import java.awt.Color;
 import asciiPanel.AsciiPanel;
 
 public enum Tile {
-	UNKNOWN(' ', AsciiPanel.white, "The darkness of the caves."),
-	STAIRS_DOWN('>', AsciiPanel.white, "Stairs leading down, deeper into the unknown."),
-    STAIRS_UP('<', AsciiPanel.white, "Stairs leading up, closer to the Surface."),
-    FLOOR((char)250, AsciiPanel.white, "The floor of the cave."),
-    WALL((char)177, AsciiPanel.yellow, "The walls of stone and earth."),
-    BOUNDS('x', AsciiPanel.brightBlack, "");
+	UNKNOWN(' ', AsciiPanel.white, "The darkness of the caves.", "unknown"),
+	STAIRS_DOWN('>', AsciiPanel.white, "Stairs leading down, deeper into the unknown.", "stairs down"),
+    STAIRS_UP('<', AsciiPanel.white, "Stairs leading up, closer to the Surface.", "stairs up"),
+    FLOOR((char)250, AsciiPanel.white, "The floor of the cave.", "floor"),
+    WALL((char)177, AsciiPanel.yellow, "The walls of stone and earth.", "wall"),
+    POISON_PIT((char)247, AsciiPanel.green, "A shallow pool of poison.", "poison"),
+    LAVA_PIT((char)247, AsciiPanel.red, "A pool of hot lava.", "lava"),
+    BOUNDS('x', AsciiPanel.brightBlack, "", "");
 
     private String details;
-    public String details(){ return details; }
+    public String details() { return details; }
 
-    Tile(char glyph, Color color, String details){
+    private String tilename;
+    public String tilename() { return tilename; }
+
+    Tile(char glyph, Color color, String details, String tilename){
         this.glyph = glyph;
         this.color = color;
         this. details = details;
+        this.tilename = tilename;
     }
 	
 	private char glyph;
