@@ -16,9 +16,15 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 # What's in the next version? What's the progress?
 
-- Lore?
+- Lore? (is being written)
 
--> is being written
+- Skills (halfway through)
+
+- New monsters (not started yet)
+
+- Dodging, evasion, critical hits and critical misses (not started yet)
+
+- New crafting recepes (not started yet)
 
 
 # Logs
