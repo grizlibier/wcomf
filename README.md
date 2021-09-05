@@ -18,15 +18,13 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 - Lore? (is being written)
 
-- New types of items: wands! (almost done)
+- New types of items: wands! (done)
 
-- New afflictions: burn, stun, and more! (halfway through)
+- New afflictions: burn, stun, and more! (done)
 
 - New monsters (in process)
 
-- Dodging, evasion, critical hits and critical misses (not started yet)
-
-- New crafting recepes (not started yet)
+- Dodging, evasion, critical hits (done)
 
 
 # Logs
