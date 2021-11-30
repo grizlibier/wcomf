@@ -11,7 +11,7 @@ This is my first real project, a roguelike. Please enjoy it!
 
 # Installation
 
-Quite easy! All you need to do is to download and execute the `.jar` file, works on any system that has Java 8 environment or higher.
+Quite easy! All you need to do is to download and execute the `.jar` file, works on any system that has Java 17 environment.
 
 
 # What's in the next version? What's the progress?
@@ -28,6 +28,26 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 
 # Logs
+
+version 0.2(30 november 2021)
+
+- General changes
+
+-> New wands added
+-> New statuses added
+-> Hid turn counter
+
+- New stuff
+
+-> Added dexterity, evasions, misses and critical hits
+-> Added shields and blocking attacks
+
+- Fixes
+
++ Fixed world updating
++ Fixed minor display bugs
++ Fixed major and minor mechanics bugs
+
 
 version 0.1.1(16 june 2021)
 
