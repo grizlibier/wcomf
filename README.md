@@ -18,8 +18,6 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 - Lore? (is being written)
 
-- New types of items: wands! (done)
-
 - New afflictions: burn, stun, and more! (done)
 
 - New monsters (in process)
@@ -39,14 +37,15 @@ version 0.2(30 november 2021)
 
 - New stuff
 
+-> Added one-use wands!
 -> Added dexterity, evasions, misses and critical hits
 -> Added shields and blocking attacks
 
 - Fixes
 
-+ Fixed world updating
-+ Fixed minor display bugs
-+ Fixed major and minor mechanics bugs
+-> Fixed world updating
+-> Fixed minor display bugs
+-> Fixed major and minor mechanics bugs
 
 
 version 0.1.1(16 june 2021)
