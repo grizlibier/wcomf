@@ -19,9 +19,7 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 # What's in the next version? What's the progress?
 
 - Lore? (is being written)
-
 - New weapons
-
 - New monsters (in process)
 - Balancing
 
