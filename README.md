@@ -20,11 +20,10 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 - Lore? (is being written)
 
-- New afflictions: burn, stun, and more! (done)
+- New weapons
 
 - New monsters (in process)
-
-- Dodging, evasion, critical hits (done)
+- Balancing
 
 
 # Logs
