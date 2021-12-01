@@ -7,6 +7,8 @@ Here you'll find the newest versions of my game, Weird Caves of Mediocre Fun.
 
 This is my first real project, a roguelike. Please enjoy it!
 
+Feel free to share ideas and found bugs in "issues". Coding suggestions are also welcome.
+
 
 
 # Installation
