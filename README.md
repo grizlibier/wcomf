@@ -32,19 +32,25 @@ version 0.2(30 november 2021)
 - General changes
 
 -> New wands added
+
 -> New statuses added
+
 -> Hid turn counter
 
 - New stuff
 
 -> Added one-use wands!
+
 -> Added dexterity, evasions, misses and critical hits
+
 -> Added shields and blocking attacks
 
 - Fixes
 
 -> Fixed world updating
+
 -> Fixed minor display bugs
+
 -> Fixed major and minor mechanics bugs
 
 
