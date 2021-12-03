@@ -26,7 +26,7 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 # Logs
 
-version 0.2(30 november 2021)
+**version 0.2(30 november 2021)
 
 - General changes
 
@@ -53,17 +53,17 @@ version 0.2(30 november 2021)
 -> Fixed major and minor mechanics bugs
 
 
-version 0.1.1(16 june 2021)
+**version 0.1.1(16 june 2021)
 
 - Environment
 
 -> added lava and poison pits to world generation
 -> lava and poison interact with the player
 
-update 17 apr 2021
+**update 17 apr 2021
 - WCoMF can be found on itch.io! Here's the link: https://grizlibier.itch.io/wcomf
 
-version 0.1(6 apr 2021)
+**version 0.1(6 apr 2021)
 
 - General changes
 
@@ -114,7 +114,7 @@ version 0.1(6 apr 2021)
 -> fixed the turn counter moving without the screen doing anything or when you cancel a subscreen
 
 
-version 0.0.4(24 mar 2021)
+**version 0.0.4(24 mar 2021)
 
 - General changes
 
@@ -153,11 +153,11 @@ version 0.0.4(24 mar 2021)
 -> It's at your heals!
 
 
-update v2 (18 mar 2021)
+**update v2 (18 mar 2021)
 
 - Fixed a bug that made the game unplayble.
 
-update (17 mar 2021)
+**update (17 mar 2021)
 
 - Added the code for the game. In case someone, someday, might get interested and for my own as well.
 
@@ -165,7 +165,7 @@ update (17 mar 2021)
 
 
 
-version 0.0.3(13 feb 2021)
+**version 0.0.3(13 feb 2021)
 
 - Partially reworked AI
 
@@ -203,7 +203,8 @@ version 0.0.3(13 feb 2021)
 
 
 
-version 0.0.2.5(8 feb 2021)
+**version 0.0.2.5(8 feb 2021)
+
 // This is more of a patch than a new version, but I hope that the nastiest bugs are gone by now //
 
 - Errowkeys are now supported
@@ -227,7 +228,7 @@ version 0.0.2.5(8 feb 2021)
  -> leveling will happen at the moment of getting the needed amount of xp, any xp over the needed amount will be carried over to the next level
 
 
-version 0.0.2(7 feb 2021)
+**version 0.0.2(7 feb 2021)
 
 - minor bug fixing
 
