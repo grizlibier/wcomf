@@ -28,7 +28,7 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 **post-first reliase update**
 
-- code is deleted from main view, you can still access the source code in the release tab
+- code is deleted from main view due to its size, you can still access the source code in the release tab
 
 - only lore will be stored here in the main view
 
