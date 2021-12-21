@@ -26,7 +26,7 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 # Logs
 
-**post-first reliase update**
+**post-first-release update(21 december 2021)**
 
 - code is deleted from main view due to its size, you can still access the source code in the release tab
 
