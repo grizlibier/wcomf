@@ -26,6 +26,12 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 # Logs
 
+**post-first reliase update**
+
+- code is deleted from main view, you can still access the source code in the release tab
+
+- only lore will be stored here in the main view
+
 **version 0.2(30 november 2021)**
 
 - General changes
