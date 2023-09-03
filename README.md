@@ -26,6 +26,10 @@ Quite easy! All you need to do is to download and execute the `.jar` file, works
 
 # Logs
 
+**post-first-release update 2(3 august 2023)**
+
+- I made a stupid mistake in 2021, so I'll be restoring the entire codebase. I'll also go and rework most of the code because it's awful.
+
 **post-first-release update(21 december 2021)**
 
 - code is deleted from main view due to its size, you can still access the source code in the release tab
