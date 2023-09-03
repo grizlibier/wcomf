@@ -1,0 +1,16 @@
+<==========================================================>
+ \  The changes of the last version will be recorded here /
+  \       together with the to-do's at the time          /
+   ======================================================
+
++ fixed spells doing no damage/having no effect
++ added skills
++ added simple classes
++ added equipment rarity
+ 
+Currently doing:
+~ 
+ 
+Must do:
+
+-fix some enemies called "the yourself"
