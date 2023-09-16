@@ -571,9 +571,11 @@ public class Creature {
 	}
 
 	private void leaveCorpse() {
-		Item corpse = new Item('%', color, name + " corpse", "A corpse of a slain monster. Is still eatable.");
-		corpse.modifyFoodValue(maxHp * 2);
-		corpse.isFood = true;
+		Item corpse = new Item
+				.ItemBuilder('%', color, name + " corpse", "A corpse of a slain monster. Is still eatable.")
+				.setFoodValue(maxHp * 2)
+				.setFood(true).build();
+		
 		world.addAtEmptySpace(corpse, x, y, z);
 		for (Item item : inventory.getItems()) {
 			if (item != null)
@@ -582,19 +584,21 @@ public class Creature {
 	}
 
 	public Item newUnknownFlesh(int depth) {
-		Item item = new Item('/', color, "a patch of unknown flesh", "A patch of weird-smelling meat.");
-		item.modifyFoodValue(250);
-		item.isFood = true;
-		item.setFoodEffect(new Effect("Poison", 5) {
-			public void start(Creature creature) {
-				creature.doAction("look very sick");
-			}
+		Item item = new Item
+				.ItemBuilder('/', color, "a patch of unknown flesh", "A patch of weird-smelling meat.")
+				.setFood(true)
+				.setFoodValue(250)
+				.setFoodEffect(new Effect("Poison", 5) {
+					public void start(Creature creature) {
+						creature.doAction("look very sick");
+					}
 
-			public void update(Creature creature) {
-				super.update(creature);
-				creature.modifyHp(-10);
-			}
-		});
+					public void update(Creature creature) {
+						super.update(creature);
+						creature.modifyHp(-10);
+					}
+				}).build();
+		
 		world.addAtEmptyItemLocation(item, depth);
 		return item;
 	}

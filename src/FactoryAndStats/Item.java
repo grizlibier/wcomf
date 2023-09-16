@@ -111,7 +111,7 @@ public class Item {
     private List<Spell> writtenSpells;
     public List<Spell> writtenSpells() { return writtenSpells; }
     
-    public class ItemBuilder {
+    public static class ItemBuilder {
     	private char glyph;
         private Color color;
         private String name;
