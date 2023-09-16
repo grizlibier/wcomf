@@ -9,4 +9,4 @@ public abstract class CurseOfTimeOption {
 	  }
 
 	  public abstract void invoke(Creature creature);
-	}
+}
