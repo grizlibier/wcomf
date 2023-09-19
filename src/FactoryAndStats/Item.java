@@ -307,6 +307,11 @@ public class Item {
 			this.writtenSpells = writtenSpells;
 			return this;
 		}
+
+	    public ItemBuilder addWrittenSpell(String name, int manaCost, Effect effect){
+	        writtenSpells.add(new Spell(name, manaCost, effect));
+	        return this;
+	    }
 		
 		public Item build() {
 			return new Item(this);
@@ -375,9 +380,5 @@ public class Item {
         	details += "| ranged attack:" + rangedAttackValue + " |";
         
         return details;
-    }
-
-    public void addWrittenSpell(String name, int manaCost, Effect effect){
-        writtenSpells.add(new Spell(name, manaCost, effect));
     }
 }

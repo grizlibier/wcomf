@@ -143,44 +143,72 @@ public class StuffFactory {
 	    return minorMana;
 	}
 	
+	public Effect Cure(String effectName) {
+		Effect cure = new Effect("Cure", 1) {
+			public void start(Creature player){
+				for (Effect effect: player.effects()){
+					if (effect.getName().equals(effectName) ){
+						effect.isDone();
+					}
+				}
+			}
+		};
+		return cure;
+	}
+	
 	// ITEMS
 	
 	public Item newArtifact(int depth){
-        Item item = new Item('A', AsciiPanel.white, "an Artifact", "The Artifact you were send to retrieve.");
+        Item item = new Item
+        		.ItemBuilder('A', AsciiPanel.white, "an Artifact", "The Artifact you were send to retrieve.")
+        		.build();
+        
         world.addAtEmptyItemLocation(item, depth);
         return item;
     }
 	
 	public Item newRock(int depth){
-        Item item = new Item(',', AsciiPanel.white, "a sturdy rock", "A rock, can be used as a weapon or crafting material.");
-        item.isWeapon();
-        item.modifyAttackValue(2);
-        item.modifyThrownAttackValue(2);
-        item.setWeaponEffect(Bleeding(1));
+        Item item = new Item
+        		.ItemBuilder(',', AsciiPanel.white, "a sturdy rock", "A rock, can be used as a weapon or crafting material.")
+        		.setWeapon(true)
+        		.setAttackValue(2)
+        		.setThrownAttackValue(2)
+        		.setWeaponEffect(Bleeding(1))
+        		.build();
+        
         world.addAtEmptyItemLocation(item, depth);
         return item;
     }
 
 	public Item newTorch(int depth){
-        Item item = new Item('[', AsciiPanel.yellow, "a torch", "A torch to help you see in the darkness. Can be used as a weapon.");
-        item.isWeapon();
-        item.modifyVisionRadius(3);
-        item.modifyAttackValue(1);
-        item.setWeaponEffect(Burn(1));
+        Item item = new Item
+        		.ItemBuilder('[', AsciiPanel.yellow, "a torch", "A torch to help you see in the darkness. Can be used as a weapon.")
+        		.setWeapon(true)
+        		.setVisionRadius(3)
+        		.setAttackValue(1)
+        		.setWeaponEffect(Burn(1))
+        		.build();
+
         world.addAtEmptyItemLocation(item, depth);
         return item;
     }
 
 	public Item newStick(int depth){
-		Item item = new Item('-', AsciiPanel.yellow, "a stick", "A stick is better then nothing in a fight... Or a fire.");
-		item.modifyAttackValue(1);
-		item.modifyDefenseValue(1);
+		Item item = new Item
+				.ItemBuilder('-', AsciiPanel.yellow, "a stick", "A stick is better then nothing in a fight... Or a fire.")
+				.setAttackValue(1)
+				.setDefenseValue(1)
+				.build();
+
 		world.addAtEmptyItemLocation(item, depth);
 		return item;
 	}
 
 	public Item newBowl(int depth){
-		Item item = new Item('^', AsciiPanel.yellow, "a bowl", "A wooden bowl, it is empty.");
+		Item item = new Item
+				.ItemBuilder('^', AsciiPanel.yellow, "a bowl", "A wooden bowl, it is empty.")
+				.build();
+		
 		world.addAtEmptyItemLocation(item, depth);
 		return item;
 	}
@@ -188,84 +216,75 @@ public class StuffFactory {
 	// USABLES
 
 	public Item newDirtyBandages(int depth, Creature player){
-		Item item = new Item('*', AsciiPanel.white, "a dirty bandage", "A dirty piece of bandage, using it can infect your wounds.");
-		item.setFoodEffect(new Effect("Cure", 1){
-			public void start(Creature player){
-				for (Effect effect: player.effects()){
-					if (effect.getName().equals("Bleeding") ){
-						effect.isDone();
-					}
-				}
-			}
-		});
-		if ((double)Math.random() > 0.3){
-			item.setQuaffEffect(Poisoned(10));			
-		}
-		item.isAUsable = true;
+		Item item = new Item
+				.ItemBuilder('*', AsciiPanel.white, "a dirty bandage", "A dirty piece of bandage, using it can infect your wounds.")
+				.setAUsable(true)
+				.setFoodEffect(Cure("Bleeding"))
+				.build();
+
+		if ((double)Math.random() > 0.3)
+			item.setQuaffEffect(Poisoned(10));
+
 		world.addAtEmptyItemLocation(item, depth);
 		return item;
 	}
 
 	public Item newCleanBandages(int depth, Creature player){
-		Item item = new Item('*', AsciiPanel.white, "a clean bandage", "A clean piece of bandage, it feels good on your skin.");
-		item.setFoodEffect(new Effect("Cure", 1){
-			public void start(Creature player){
-				for (Effect effect: player.effects()){
-					if (effect.getName().equals("Bleeding") ){
-						effect.isDone();
-					}
-				}
-			}
-		});
-		item.isAUsable = true;
+		Item item = new Item
+				.ItemBuilder('*', AsciiPanel.white, "a clean bandage", "A clean piece of bandage, it feels good on your skin.")
+				.setAUsable(true)
+				.setFoodEffect(Cure("Bleeding"))
+				.build();
+
 		world.addAtEmptyItemLocation(item, depth);
 		return item;
 	}
 
 	public Item newAntidote(int depth, Creature player){
-		Item item = new Item('*', AsciiPanel.green, "a bottle of antidote", "This bitter liquid can cure any poison.");
-		item.setFoodEffect(new Effect("Cure", 1){
-			public void start(Creature player){
-				for (Effect effect: player.effects()){
-					if (effect.getName().equals("Poison") ){
-						effect.isDone();
-					}
-				}
-			}
-		});
-		item.isAUsable = true;
+		Item item = new Item
+				.ItemBuilder('*', AsciiPanel.green, "a bottle of antidote", "This bitter liquid can cure any poison.")
+				.setAUsable(true)
+				.setFoodEffect(Cure("Poison"))
+				.build();
+
 		world.addAtEmptyItemLocation(item, depth);
 		return item;
 	}
 
 	public Item newRestoreLeaf(int depth, Creature player){
-		Item item = new Item('*', AsciiPanel.green, "a leaf of restoration", "Applying this leaf directly to the skin may restore strength and vigor.");
-		item.setFoodEffect(new Effect("Debuff", 1){
-			public void start(Creature player){
-				for (Effect effect: player.effects()){
-					if ((effect.getName().equals("Poison") || effect.getName().equals("Poisoned")) && (double)Math.random() > 0.5 ){
-						effect.isDone();
+		Item item = new Item
+				.ItemBuilder('*', AsciiPanel.green, "a leaf of restoration", "Applying this leaf directly to the skin may clease the body of toxins.")
+				.setAUsable(true)
+				.setFoodEffect(new Effect("Debuff", 1){
+					public void start(Creature player){
+						for (Effect effect: player.effects()){
+							if ((effect.getName().equals("Poison") || effect.getName().equals("Poisoned")) && (double)Math.random() > 0.5 ){
+								effect.isDone();
+							}
+						}
 					}
-				}
-			}
-		});
-		item.isAUsable = true;
+				})
+				.build();
+
 		world.addAtEmptyItemLocation(item, depth);
 		return item;
 	}
 
 	public Item newRestorePaste(int depth, Creature player){
-		Item item = new Item('*', AsciiPanel.green, "a paste of restoration", "Applying this paste directly to the skin will restore strength and vigor.");
-		item.setFoodEffect(new Effect("Debuff", 1){
-			public void start(Creature player){
-				for (Effect effect: player.effects()){
-					if (effect.getName().equals("Poison") ){
-						effect.isDone();
+		Item item = new Item
+				.ItemBuilder('*', AsciiPanel.green, "a paste of restoration", "Applying this paste directly to the skin will clease the body of toxins.")
+				.setAUsable(true)
+				.setFoodEffect(new Effect("Debuff", 1){
+					public void start(Creature player){
+						for (Effect effect: player.effects()){
+							if (effect.getName().equals("Poison") ){
+								effect.isDone();
+							}
+						}
 					}
-				}
-			}
-		});
-		item.isAUsable = true;
+				})
+				.build();
+
 		world.addAtEmptyItemLocation(item, depth);
 		return item;
 	}
@@ -273,39 +292,48 @@ public class StuffFactory {
 	// MULTIUSE ITEMS
 	
 	public Item newWandOfLightning(int depth) {
-		Item item = new Item('/', Color.YELLOW, "a wand of lightning", "A simple wand imbued with lightning magic. Stuns you and the target.");
-		item.modifyUses(4);
-		item.isZappable = true;
-		item.addWrittenSpell("Lightning", 0, new Effect("Magic", 3) {
-			public void start(Creature creature) {
-				creature.modifyHp(-15);
-				creature.notify("You are stunned and can't move!");
-				creature.setStunned(true);
-			}
-			
-			public void end(Creature creature) {
-				creature.notify("You regain your composure!");
-				creature.setStunned(false);
-			}
-		});
+		Item item = new Item
+				.ItemBuilder('/', Color.YELLOW, "a wand of lightning", "A simple wand imbued with lightning magic. Stuns you and the target.")
+				.setUses(4)
+				.setZappable(true)
+				.addWrittenSpell("Lightning", 0, new Effect("Magic", 3) {
+					public void start(Creature creature) {
+						creature.modifyHp(-15);
+						creature.notify("You are stunned and can't move!");
+						creature.setStunned(true);
+					}
+					
+					public void end(Creature creature) {
+						creature.notify("You regain your composure!");
+						creature.setStunned(false);
+					}
+				})
+				.build();
+
         world.addAtEmptyItemLocation(item, depth);
 		return item;
 	}
 	
 	public Item newWandOfFire(int depth) {
-		Item item = new Item('/', Color.YELLOW, "a wand of fire", "A simple wand imbued with weak fire magic.");
-		item.modifyUses(4);
-		item.isZappable = true;
-		item.addWrittenSpell("Fire starter", 0, Burn(3));
+		Item item = new Item
+				.ItemBuilder('/', Color.YELLOW, "a wand of fire", "A simple wand imbued with weak fire magic.")
+				.setZappable(true)
+				.addWrittenSpell("Fire starter", 0, Burn(3))
+				.setUses(4)
+				.build();
+
         world.addAtEmptyItemLocation(item, depth);
 		return item;
 	}
 	
 	public Item newWandOfPoison(int depth) {
-		Item item = new Item('/', Color.YELLOW, "a wand of poison", "A simple wand imbued with weak poison magic.");
-		item.modifyUses(4);
-		item.isZappable = true;
-		item.addWrittenSpell("Weak poison bolt", 0, Poisoned(3));
+		Item item = new Item
+				.ItemBuilder('/', Color.YELLOW, "a wand of poison", "A simple wand imbued with weak poison magic.")
+				.setZappable(true)
+				.setUses(4)
+				.addWrittenSpell("Weak poison bolt", 0, Poisoned(3))
+				.build();
+
         world.addAtEmptyItemLocation(item, depth);
 		return item;
 	}
