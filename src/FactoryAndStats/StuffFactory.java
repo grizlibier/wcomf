@@ -339,32 +339,41 @@ public class StuffFactory {
 	}
 	
 	public Item newWandOfHealing(int depth) {
-		Item item = new Item('/', Color.YELLOW, "a wand of healing", "A simple wand imbued with weak healing magic.");
-		item.modifyUses(4);
-		item.isZappable = true;
-		item.addWrittenSpell("Instant Heal", 0, InstantMinorHeal(10));
+		Item item = new Item
+				.ItemBuilder('/', Color.YELLOW, "a wand of healing", "A simple wand imbued with weak healing magic.")
+				.setUses(4)
+				.setZappable(true)
+				.addWrittenSpell("Instant Heal", 0, InstantMinorHeal(10))
+				.build();
+
         world.addAtEmptyItemLocation(item, depth);
 		return item;
 	}
 	
 	public Item newWandOfMissile(int depth) {
-		Item item = new Item('/', Color.YELLOW, "a wand of magic missile", "A simple wand imbued with weak magic.");
-		item.modifyUses(4);
-		item.isZappable = true;
-		item.addWrittenSpell("Magic missile", 0, new Effect("Magic", 1) {
-			public void start(Creature creature) {
-				creature.modifyHp(-10);
-			}
-		});
+		Item item = new Item
+				.ItemBuilder('/', Color.YELLOW, "a wand of magic missile", "A simple wand imbued with weak magic.")
+				.setUses(5)
+				.setZappable(true)
+				.addWrittenSpell("Magic missile", 0, new Effect("Magic", 1) {
+					public void start(Creature creature) {
+						creature.modifyHp(-10);
+					}
+				})
+				.build();
+
         world.addAtEmptyItemLocation(item, depth);
 		return item;
 	}
 	
 	public Item newWandOfDebuff(int depth) {
-		Item item = new Item('/', Color.YELLOW, "a wand of nastyness", "A simple wand imbued with nasty magic.");
-		item.modifyUses(4);
-		item.isZappable = true;
-		item.addWrittenSpell("The Nasty", 0, randomDebuff(3));
+		Item item = new Item
+				.ItemBuilder('/', Color.YELLOW, "a wand of nastyness", "A simple wand imbued with nasty magic.")
+				.setUses(4)
+				.setZappable(true)
+				.addWrittenSpell("The Nasty", 0, randomDebuff(3))
+				.build();
+
         world.addAtEmptyItemLocation(item, depth);
 		return item;
 	}
@@ -372,42 +381,56 @@ public class StuffFactory {
 	// FOOD
 
 	public Item newBread(int depth){
-        Item item = new Item('-', Color.ORANGE, "a loaf of bread", "A loaf of old, hard bread.");
-        item.modifyFoodValue(150);
-		item.isFood = true;
+        Item item = new Item
+        		.ItemBuilder('-', Color.ORANGE, "a loaf of bread", "A loaf of old, hard bread.")
+        		.setFood(true)
+        		.setFoodValue(150)
+        		.build();
+
         world.addAtEmptyItemLocation(item, depth);
         return item;
     }
 	
 	public Item newApple(int depth){
-        Item item = new Item('*', AsciiPanel.red, "an apple", "A surprisingly fresh apple!");
-        item.modifyFoodValue(50);
-		item.isFood = true;
+        Item item = new Item
+        		.ItemBuilder('*', AsciiPanel.red, "an apple", "A surprisingly fresh apple!")
+        		.setFood(true)
+        		.setFoodValue(50)
+        		.build();
+
         world.addAtEmptyItemLocation(item, depth);
         return item;
     }
 	
 	public Item newWater(int depth){
-        Item item = new Item((char)168, AsciiPanel.blue, "a bottle of water", "Who left a bottle of water here?");
-        item.modifyFoodValue(10);
-        item.modifyThirstValue(35);
-		item.isDrink = true;
+        Item item = new Item
+        		.ItemBuilder((char)168, AsciiPanel.blue, "a bottle of water", "Who left a bottle of water here?")
+        		.setDrink(true)
+        		.setFoodValue(10)
+        		.setThirstValue(35)
+        		.build();
+		
 		if ((double)Math.random() > 0.4){
 			item.setQuaffEffect(Poisoned(2));
 		}
+		
         world.addAtEmptyItemLocation(item, depth);
         return item;
     }
 
 	public Item newBoiledWater(int depth){
-        Item item = new Item((char)247, AsciiPanel.blue, "a bottle of boiled water", "It tastes slightly better then normal, but soem germs might remain.");
-        item.modifyFoodValue(5);
-        item.modifyThirstValue(30);
-		item.isDrink = true;
+        Item item = new Item
+        		.ItemBuilder((char)247, AsciiPanel.blue, "a bottle of boiled water", "It tastes slightly better then normal, but some germs might remain.")
+        		.setDrink(true)
+        		.setThirstValue(30)
+        		.setFoodValue(5)
+        		.build();
+		
 		if ((float)Math.random() > 0.95){
 			item.setQuaffEffect(Poisoned(2));
 		}
-        world.addAtEmptyItemLocation(item, depth);
+        
+		world.addAtEmptyItemLocation(item, depth);
         return item;
     }
 
@@ -421,30 +444,40 @@ public class StuffFactory {
     }
 	
 	public Item newCookedMeat(int depth){
-		Item item = new Item('/', AsciiPanel.brightYellow, "a portion of cooked meat", "A piece of cooked meat, it smels so good!");
-		item.modifyFoodValue(350);
-		item.isFood = true;
+		Item item = new Item
+				.ItemBuilder('/', AsciiPanel.brightYellow, "a portion of cooked meat", "A piece of cooked meat, it smels so good!")
+				.setFood(true)
+				.setFoodValue(350)
+				.build();
+
 		world.addAtEmptyItemLocation(item, depth);
 		return item;
 	}
 
 	public Item newSoup(int depth){
-		Item item = new Item('^', AsciiPanel.yellow, "a bowl of soup", "A bowl of soup, not great but better than nothing.");
-		item.modifyFoodValue(270);
-		item.modifyThirstValue(50);
-		item.isFood = true;
+		Item item = new Item
+				.ItemBuilder('^', AsciiPanel.yellow, "a bowl of soup", "A bowl of soup, not great but better than nothing.")
+				.setFood(true)
+				.setFoodValue(270)
+				.setThirstValue(50)
+				.build();
+
 		world.addAtEmptyItemLocation(item, depth);
 		return item;
 	}
 
 	public Item newSpoiledSoup(int depth){
-		Item item = new Item('^', AsciiPanel.yellow, "a bowl of spoiled soup", "A bowl of spoiled soup, still edible if you remove the fungi...");
-		item.modifyFoodValue(150);
-		item.modifyThirstValue(40);
-		item.isFood = true;
+		Item item = new Item
+				.ItemBuilder('^', AsciiPanel.yellow, "a bowl of spoiled soup", "A bowl of spoiled soup, still edible if you remove the fungi...")
+				.setFood(true)
+				.setFoodValue(150)
+				.setThirstValue(40)
+				.build();
+
 		if (Math.random() > 0.5){
 			item.setFoodEffect(Poisoned(5));
 		}
+		
 		world.addAtEmptyItemLocation(item, depth);
 		return item;
 	}
