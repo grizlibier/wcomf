@@ -1729,13 +1729,13 @@ public class StuffFactory {
 	private void meleeQualitySelector(Item weapon) {
 		double chance = Math.random();
 		
-		if (chance >= 0.60) {
+		if (chance >= 0.50) {
 			common(weapon);
-		} else if (chance >= 0.30) {
+		} else if (chance >= 0.20) {
 			uncommonMelee(weapon);
-		} else if (chance >= 0.15) {
+		} else if (chance >= 0.06) {
 			specialMelee(weapon);
-		} else if (chance >= 0.05) {
+		} else if (chance >= 0.02) {
 			legendaryMelee(weapon);
 		} else {
 			godlikeMelee(weapon);
@@ -1774,13 +1774,13 @@ public class StuffFactory {
 	private void rangedQualitySelector(Item weapon) {
 		double chance = Math.random();
 		
-		if (chance >= 0.60) {
+		if (chance >= 0.50) {
 			common(weapon);
-		} else if (chance >= 0.30) {
+		} else if (chance >= 0.20) {
 			uncommonRanged(weapon);
-		} else if (chance >= 0.15) {
+		} else if (chance >= 0.06) {
 			specialRanged(weapon);
-		} else if (chance >= 0.05) {
+		} else if (chance >= 0.02) {
 			legendaryRanged(weapon);
 		} else {
 			godlikeRanged(weapon);
@@ -1812,13 +1812,13 @@ public class StuffFactory {
 	private void thrownQualitySelector(Item weapon) {
 		double chance = Math.random();
 		
-		if (chance >= 0.60) {
+		if (chance >= 0.50) {
 			common(weapon);
-		} else if (chance >= 0.30) {
+		} else if (chance >= 0.20) {
 			uncommonThrow(weapon);
-		} else if (chance >= 0.15) {
+		} else if (chance >= 0.06) {
 			specialThrow(weapon);
-		} else if (chance >= 0.05) {
+		} else if (chance >= 0.02) {
 			legendaryThrow(weapon);
 		} else {
 			godlikeThrow(weapon);
@@ -1853,13 +1853,13 @@ public class StuffFactory {
 	private void armorQualitySelector(Item armor) {
 		double chance = Math.random();
 		
-		if (chance >= 0.60) {
+		if (chance >= 0.50) {
 			common(armor);
-		} else if (chance >= 0.30) {
+		} else if (chance >= 0.20) {
 			uncommonArmor(armor);
-		} else if (chance >= 0.15) {
+		} else if (chance >= 0.06) {
 			specialArmor(armor);
-		} else if (chance >= 0.05) {
+		} else if (chance >= 0.02) {
 			legendaryArmor(armor);
 		} else {
 			godlikeArmor(armor);
