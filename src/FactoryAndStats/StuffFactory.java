@@ -597,41 +597,53 @@ public class StuffFactory {
 	// RANGED AND THROWING WEAPONS
 	
 	public Item newBow(int depth){
-        Item item = new Item(')', AsciiPanel.yellow, "a bow with arrows", "A normal bow with a mana-infused quiver.");
-		item.setRanged();
-        item.modifyAttackValue(1);
-        item.modifyRangedAttackValue(7);
+        Item item = new Item
+        		.ItemBuilder(')', AsciiPanel.yellow, "a bow with arrows", "A normal bow with a mana-infused quiver.")
+        		.setRanged(true)
+        		.setAttackValue(1)
+        		.setRangedAttackValue(7)
+        		.build();
+
         qualitySelector(item);
         world.addAtEmptyItemLocation(item, depth);
         return item;
     }
 
 	public Item newCrossbow(int depth){
-        Item item = new Item(')', AsciiPanel.yellow, "a crossbow with bolts", "An old crossbow with a mana-infused quiver.");
-		item.setRanged();
-        item.modifyAttackValue(2);
-		item.modifyDefenseValue(2);
-		item.modifyDexterityValue(-1);
-        item.modifyRangedAttackValue(10);
+        Item item = new Item
+        		.ItemBuilder(')', AsciiPanel.yellow, "a crossbow with bolts", "An old crossbow with a mana-infused quiver.")
+        		.setRanged(true)
+        		.setAttackValue(2)
+        		.setDefenseValue(2)
+        		.setDexterityValue(-1)
+        		.setRangedAttackValue(10)
+        		.build();
+
         qualitySelector(item);
         world.addAtEmptyItemLocation(item, depth);
         return item;
     }
 	
 	public Item newJavelin(int depth){
-        Item item = new Item(')', AsciiPanel.yellow, "a javelin", "Basically a throwing spear.");
-		item.setThrown();
-        item.modifyAttackValue(3);
-        item.modifyThrownAttackValue(10);
+        Item item = new Item
+        		.ItemBuilder(')', AsciiPanel.yellow, "a javelin", "Basically a throwing spear.")
+        		.setThrown(true)
+        		.setAttackValue(3)
+        		.setThrownAttackValue(10)
+        		.build();
+
         qualitySelector(item);
         world.addAtEmptyItemLocation(item, depth);
         return item;
     }
 	
 	public Item newShuriken(int depth){
-        Item item = new Item('*', AsciiPanel.yellow, "a shuriken", "A weapon of stealthy individuals or a last resort.");
-        item.setThrown();
-        item.modifyThrownAttackValue(15);
+        Item item = new Item
+        		.ItemBuilder('*', AsciiPanel.yellow, "a shuriken", "A weapon of stealthy individuals or a last resort.")
+        		.setThrown(true)
+        		.setThrownAttackValue(15)
+        		.build();
+
         qualitySelector(item);
         world.addAtEmptyItemLocation(item, depth);
         return item;
