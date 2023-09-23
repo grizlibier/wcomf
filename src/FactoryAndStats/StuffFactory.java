@@ -435,10 +435,13 @@ public class StuffFactory {
     }
 
 	public Item newUnknownFlesh(int depth){
-        Item item = new Item('/', AsciiPanel.yellow, "a patch of unknown flesh", "A patch of weird-smelling meat.");
-        item.modifyFoodValue(200);
-        item.setFoodEffect(Poisoned(3));
-		item.isFood = true;
+        Item item = new Item
+        		.ItemBuilder('/', AsciiPanel.yellow, "a patch of unknown flesh", "A patch of weird-smelling meat.")
+        		.setFood(true)
+        		.setFoodValue(200)
+        		.setFoodEffect(Poisoned(3))
+        		.build();
+
         world.addAtEmptyItemLocation(item, depth);
         return item;
     }
@@ -485,40 +488,52 @@ public class StuffFactory {
 	// WEAPONS
 
 	public Item newDagger(int depth){
-		Item item = new Item(')', AsciiPanel.white, "a dagger", "An old dagger, won't fall apart any soon.");
-        item.setWeapon();
-		item.modifyAttackValue(5);
-		item.modifyDexterityValue(1);
-		item.modifyThrownAttackValue(5);
-		item.setWeaponEffect(Bleeding(5));
+		Item item = new Item
+				.ItemBuilder(')', AsciiPanel.white, "a dagger", "An old dagger, won't fall apart any soon.")
+				.setWeapon(true)
+				.setAttackValue(5)
+				.setDexterityValue(1)
+				.setThrownAttackValue(5)
+				.setWeaponEffect(Bleeding(5))
+				.build();
+
 		qualitySelector(item);
 		world.addAtEmptyItemLocation(item, depth);
 		return item;
 	}
 
 	public Item newSword(int depth){
-		Item item = new Item(')', AsciiPanel.brightWhite, "a sword", "It's rusty and old, but it gets the job done.");
-        item.setWeapon();
-		item.modifyAttackValue(10);
+		Item item = new Item
+				.ItemBuilder(')', AsciiPanel.brightWhite, "a sword", "It's rusty and old, but it gets the job done.")
+				.setWeapon(true)
+				.setAttackValue(10)
+				.build();
+
 		qualitySelector(item);
 		world.addAtEmptyItemLocation(item, depth);
 		return item;
 	}
 
 	public Item newExe(int depth){
-		Item item = new Item(')', AsciiPanel.yellow, "an exe", "It has a rusty blade, but it stil cuts.");
-        item.setWeapon();
-		item.modifyAttackValue(12);
+		Item item = new Item
+				.ItemBuilder(')', AsciiPanel.yellow, "an exe", "A lumberjack's trusty tool. Or that of an executioner.")
+				.setWeapon(true)
+				.setAttackValue(12)
+				.build();
+
 		qualitySelector(item);
 		world.addAtEmptyItemLocation(item, depth);
 		return item;
 	}
 	
 	public Item newCursedSword(int depth, Creature creature){
-		Item item = new Item(')', AsciiPanel.red, "a cursed sword", "A sword cursed by a demon, accept the curse, gain power.");
-        item.setWeapon();
-		item.modifyAttackValue(20);
-		item.setWeaponEffect(Poisoned(5));
+		Item item = new Item
+				.ItemBuilder(')', AsciiPanel.red, "a cursed sword", "A sword cursed by a demon, accept the curse, gain power.")
+				.setWeapon(true)
+				.setAttackValue(20)
+				.setWeaponEffect(Poisoned(5))
+				.build();
+
 		qualitySelector(item);
 		creature.modifyMaxHp(-20);
 		world.addAtEmptyItemLocation(item, depth);
@@ -526,42 +541,54 @@ public class StuffFactory {
 	}
 	
 	public Item newGreatSword(int depth){
-		Item item = new Item(')', AsciiPanel.brightWhite, "a greatsword", "A bigger version of a normal sword.");
-        item.setWeapon();
-		item.modifyAttackValue(15);
+		Item item = new Item
+				.ItemBuilder(')', AsciiPanel.brightWhite, "a greatsword", "A bigger version of a normal sword.")
+				.setWeapon(true)
+				.setAttackValue(15)
+				.build();
+
 		qualitySelector(item);
 		world.addAtEmptyItemLocation(item, depth);
 		return item;
 	}
 
 	public Item newStaff(int depth){
-		Item item = new Item(')', AsciiPanel.yellow, "a staff", "A staff of a nameless mage.");
-        item.setWeapon();
-		item.modifyAttackValue(5);
-		item.modifyDefenseValue(3);
-		item.modifyMaxMana(10);
+		Item item = new Item
+				.ItemBuilder(')', AsciiPanel.yellow, "a staff", "A staff of a nameless mage.")
+				.setWeapon(true)
+				.setAttackValue(5)
+				.setDefenseValue(3)
+				.setMaxMana(10)
+				.build();
+
 		qualitySelector(item);
 		world.addAtEmptyItemLocation(item, depth);
 		return item;
 	}
 	
 	public Item newFlail(int depth){
-		Item item = new Item(')', AsciiPanel.yellow, "a flail", "Can be either a weapon or a satisfaction of weird interests.");
-        item.setWeapon();
-		item.modifyAttackValue(2);
-		item.modifyDexterityValue(1);
-		item.setWeaponEffect(Bleeding(2));
+		Item item = new Item
+				.ItemBuilder(')', AsciiPanel.yellow, "a flail", "Can be either a weapon or a satisfaction of weird interests.")
+				.setWeapon(true)
+				.setAttackValue(2)
+				.setDexterityValue(1)
+				.setWeaponEffect(Bleeding(2))
+				.build();
+
 		qualitySelector(item);
 		world.addAtEmptyItemLocation(item, depth);
 		return item;
 	}
 
 	public Item newMorningStar(int depth){
-		Item item = new Item(')', AsciiPanel.yellow, "a morning star", "A heavy, spiky ball chained to a stick.");
-        item.setWeapon();
-		item.modifyAttackValue(5);
-		item.modifyDefenseValue(5);
-		item.setWeaponEffect(Bleeding(5));
+		Item item = new Item
+				.ItemBuilder(')', AsciiPanel.yellow, "a morning star", "A heavy, spiky ball chained to a stick.")
+				.setWeapon(true)
+				.setAttackValue(5)
+				.setDefenseValue(5)
+				.setWeaponEffect(Bleeding(5))
+				.build();
+
 		qualitySelector(item);
 		world.addAtEmptyItemLocation(item, depth);
 		return item;
